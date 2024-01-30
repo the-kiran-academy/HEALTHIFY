@@ -1,0 +1,12 @@
+show events;
+show processlist;
+
+DROP EVENT IF EXISTS `delete_otp`;
+CREATE EVENT `delete_otp`  ON SCHEDULE EVERY 1 MINUTE 
+STARTS '2023-03-05'
+ENDs '2050-03-05' 
+DO 
+
+Delete from `otp` WHERE timestamp < now() - interval 3 MINUTE;
+ALTER EVENT `delete_otp` ON  COMPLETION PRESERVE ENABLE;
+set global event_scheduler=on;

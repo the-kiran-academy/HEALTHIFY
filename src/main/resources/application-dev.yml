@@ -1,0 +1,58 @@
+db:
+  driver: com.mysql.cj.jdbc.Driver
+  password: admin
+  url: jdbc:mysql://localhost:3306/healthify-dev?createDatabaseIfNotExist=true
+  username: root
+entitymanager:
+  packagesToScan: com
+hibernate:
+  dialect: org.hibernate.dialect.MySQL8Dialect
+  format_sql: false
+  hbm2ddl:
+    auto: update
+  show_sql: true
+  
+logging:
+  file:
+    name: HealthifyAppLogs/healthify.log
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'
+    file: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
+server:
+  port: 8091
+spring:
+  application:
+    name: HEALTHIFY-SERVICE
+  mail:
+    host: smtp.gmail.com
+    password: ivmarmftryaeuzji
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    username: attendance2715@gmail.com
+user:
+  roles: ROLE_ADMIN,ROLE_DOCTOR,ROLE_PHARMACIST,ROLE_RECEPTIONIST,ROLE_NURSE
+  
+management:
+  endpoints:
+    web: 
+      exposure:
+        include: "*"  # This exposes all endpoints, you can customize which ones to expose
+      base-path: /actuator 
+  endpoint:
+    health:
+      show-details: always
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true 
+      
+twilio:
+  sid: AC3d649bc4035788eb97d6b27f311cd91b
+  token: 5252b19affcf6b71b2e4e99fd09ba5de
+ 
+                  

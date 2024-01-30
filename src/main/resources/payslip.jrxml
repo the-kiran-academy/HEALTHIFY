@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="paylslip" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c1428b9f-35a2-49d1-bb20-61e5ea3e6f58">
+	<parameter name="basic" class="java.lang.Float"/>
+	<parameter name="leaves" class="java.lang.Integer"/>
+	<parameter name="prasentDays" class="java.lang.Integer"/>
+	<parameter name="noOfDays" class="java.lang.Integer"/>
+	<parameter name="month" class="java.lang.String"/>
+	<parameter name="name" class="java.lang.String"/>
+	<parameter name="designation" class="java.lang.String"/>
+	<parameter name="dearnessAllowance" class="java.lang.Float"/>
+	<parameter name="houserentAllowance" class="java.lang.Float"/>
+	<parameter name="conveyanceAllowance" class="java.lang.Float"/>
+	<parameter name="medicalAllowance" class="java.lang.Float"/>
+	<parameter name="specialAllowance" class="java.lang.Float"/>
+	<parameter name="totalPay" class="java.lang.Float"/>
+	<parameter name="pf" class="java.lang.Float"/>
+	<parameter name="tds" class="java.lang.Float"/>
+	<parameter name="epf" class="java.lang.Float"/>
+	<parameter name="deductionTotal" class="java.lang.Float"/>
+	<parameter name="totalPayForTheMonth" class="java.lang.Float"/>
+	<parameter name="professionalTax" class="java.lang.Float"/>
+	<parameter name="netSalary" class="java.lang.Float"/>
+	<parameter name="grossSalary" class="java.lang.Float"/>
+	<parameter name="amountInWord" class="java.lang.String"/>
+	<parameter name="title" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="59" splitType="Stretch">
+			<staticText>
+				<reportElement x="230" y="-20" width="312" height="25" uuid="791bc616-4d7c-4291-b3bf-800b2f677b59"/>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[HOSPITAL MANAGEMENT SYSTEM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="0" width="80" height="25" forecolor="#8777C7" uuid="2cfbf947-8cfd-4612-ae62-864a85d33f25"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[H-M-S]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="20" width="190" height="26" uuid="bc9a8754-a72c-498e-b465-26c0fbfcffca"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Deendayal Memorial Hospital]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-10" y="46" width="820" height="1" uuid="104ec791-5dae-46b9-b39a-6f44b3aa2ebe"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="96" splitType="Stretch">
+			<staticText>
+				<reportElement x="-10" y="0" width="270" height="26" uuid="7e7fd892-4229-4f65-acd4-255ee5a72789"/>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Salary slip of the month : .......................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-10" y="26" width="270" height="26" uuid="4bc27647-a72d-441c-b56a-867e49055a16"/>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name : ......................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-11" y="52" width="271" height="26" uuid="2d1f5a08-d7d1-4b23-8c95-13e37da23f4d"/>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Designation :............................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="560" y="0" width="90" height="26" uuid="b4464f2e-26ee-41dc-b779-cb75dd5abbd5"/>
+				<box>
+					<pen lineWidth="1.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. of days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="650" y="0" width="100" height="26" uuid="a128fcea-0b27-4d00-947e-ba617f653de1"/>
+				<box>
+					<pen lineWidth="1.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prasent Days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="750" y="0" width="60" height="26" uuid="ce482308-3c58-4446-8bbd-7d0b94bc4231"/>
+				<box>
+					<pen lineWidth="1.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Leave]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="750" y="26" width="60" height="24" uuid="121f44d4-8349-4517-8a12-b332df9b65d3"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{leaves}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="650" y="26" width="100" height="24" uuid="4188d208-de5e-41c0-97cc-6fdd604fe9d3"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{prasentDays}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="560" y="26" width="90" height="24" uuid="cb24b8d0-1a58-4513-a047-fe55a4caa923"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{noOfDays}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="90" height="21" uuid="158b61ca-2f14-4c51-b47f-c7cb502a6ab7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{month}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="26" width="220" height="19" uuid="ba3fb1a9-b9c5-49a0-a380-90c27521747e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="50" width="180" height="30" uuid="6098c3ad-1d71-4b5d-a5c6-cda8d542a4ef"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{designation}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-11" y="90" width="821" height="1" uuid="b2d9dedb-ad7e-4f6d-bf1e-945b05f5ef65"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="273" splitType="Stretch">
+			<staticText>
+				<reportElement x="-9" y="50" width="129" height="20" uuid="5f65748d-875b-4d66-a02a-ac5af6890772"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ Basic]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-9" y="70" width="129" height="20" uuid="8936b357-6c18-46e9-b164-d7f85bb85ac8"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ Dearness Allow.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-9" y="90" width="129" height="20" uuid="6db32667-fed1-4c6f-8e37-a4c059146f02"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ House Rent  Allow.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-9" y="110" width="129" height="20" uuid="80877315-71f8-4a47-998f-f28295c62bc6"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ Conveyance Allow.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-9" y="130" width="129" height="20" uuid="dc424844-b8ac-4127-afde-e8134a868fab"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ Medical Allow.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-9" y="150" width="129" height="20" uuid="8f135801-1ff7-45ac-b498-95f6567a00d8"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ Special Allow.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-9" y="170" width="129" height="20" uuid="d7676e2b-f388-4d50-9468-afcd3bafb230"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Total Pay]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="50" width="140" height="20" uuid="f0de3e66-7971-4330-955c-bea7a6ed046d"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{basic}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="70" width="140" height="20" uuid="673fec00-835f-4f3c-a101-7a1af3ef617a"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dearnessAllowance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="90" width="140" height="20" uuid="aa77b4f5-0e7a-48f2-9080-147e9094fe94"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{houserentAllowance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="110" width="140" height="20" uuid="046b3428-3beb-442a-b24c-ae8bec0fc0f7"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{conveyanceAllowance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="130" width="140" height="20" uuid="edcb792b-458e-48f4-b340-884cd82621ea"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{medicalAllowance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="150" width="140" height="20" uuid="b9dfdb8d-cf7f-4dde-86d3-39703a013138"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{specialAllowance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="170" width="140" height="20" uuid="25e6ed64-747b-4141-8a9a-78d90bcf3aaa"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{totalPay}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="70" width="130" height="20" uuid="8726c918-d603-4109-8177-93162bf6c710"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ P.F.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="90" width="130" height="20" uuid="e6c8e6bd-c4ac-4989-9b15-1ca114a07b71"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ T.D.S.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="110" width="130" height="20" uuid="3aa23335-7377-4dac-becf-7dd648871824"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ EPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="130" width="130" height="20" uuid="c9fcb9e9-3bf7-476f-8140-40b573e26105"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-9" y="20" width="269" height="30" uuid="67f95e20-ef00-45a7-a13b-8f10f2d9bbf1"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Earnings]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="20" width="260" height="30" uuid="cb15402c-dda1-448c-a86e-eec5b7d73305"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Deduction]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="70" width="130" height="20" uuid="78722289-9d7e-4f44-8ad6-945c9a29e8ec"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" markup="none">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="90" width="130" height="20" uuid="55de7db4-69d4-4193-b711-a0d87aa894a3"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" markup="none">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tds}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="111" width="130" height="19" uuid="01a75c3e-2c13-4fcd-b4d6-9a406d8d3f76"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" markup="none">
+					<font size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{epf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="130" width="130" height="20" uuid="a06826d1-7d05-4a47-a53a-1b7dd1a926db"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" markup="none">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{deductionTotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="560" y="20" width="250" height="30" uuid="71668650-e340-4632-a2da-c8f81bb5fd26"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total pay for the month]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="560" y="50" width="250" height="30" uuid="29f54f15-f8c4-4a5a-b538-3ccb5c7fd1b8"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{totalPayForTheMonth}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-9" y="240" width="819" height="1" uuid="d829f4ff-98a5-4eea-a81c-01831a0a63de"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="280" y="50" width="130" height="20" uuid="a1abe4b3-1af8-4d4b-aa16-92662a54a375"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ Professional Tax]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="50" width="130" height="20" uuid="7855d3ef-de82-4bdf-b458-6950101bde3d"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{professionalTax}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="560" y="131" width="130" height="20" uuid="73ab6eb4-29fb-4970-af57-50857c5a80dc"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Net Salary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="560" y="111" width="130" height="20" uuid="163a81aa-ed0c-410f-99cf-375b815dccc5"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Gross Salary]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="690" y="131" width="120" height="20" uuid="c2c87b07-6e0f-40c0-8518-ab08ed32c22f"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{netSalary}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="690" y="111" width="120" height="19" uuid="6740937d-b4a7-4bfd-87ec-c030bd869423"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{grossSalary}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-10" y="210" width="130" height="20" uuid="2e7398ae-ed6a-4a6e-b829-7a3528adbbf0"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Amount In Word : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="210" width="690" height="20" uuid="2aecd712-62bf-4c5a-9b2d-8a258b1dfbba"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{amountInWord}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

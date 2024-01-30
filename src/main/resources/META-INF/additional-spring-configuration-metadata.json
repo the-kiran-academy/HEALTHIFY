@@ -1,0 +1,62 @@
+{"properties": [
+  {
+    "name": "twilio.sid",
+    "type": "java.lang.String",
+    "description": "A description for 'twilio.sid'"
+  },
+  {
+    "name": "user.roles",
+    "type": "java.lang.String",
+    "description": "A description for 'user.roles'"
+  },
+  {
+    "name": "entitymanager.packages-to-scan",
+    "type": "java.lang.String",
+    "description": "A description for 'entitymanager.packages-to-scan'"
+  },
+  {
+    "name": "hibernate.dialect",
+    "type": "java.lang.String",
+    "description": "A description for 'hibernate.dialect'"
+  },
+  {
+    "name": "hibernate.format_sql",
+    "type": "java.lang.String",
+    "description": "A description for 'hibernate.format_sql'"
+  },
+  {
+    "name": "hibernate.hbm2ddl.auto",
+    "type": "java.lang.String",
+    "description": "A description for 'hibernate.hbm2ddl.auto'"
+  },
+  {
+    "name": "hibernate.show_sql",
+    "type": "java.lang.String",
+    "description": "A description for 'hibernate.show_sql'"
+  },
+  {
+    "name": "db.driver",
+    "type": "java.lang.String",
+    "description": "A description for 'db.driver'"
+  },
+  {
+    "name": "db.password",
+    "type": "java.lang.String",
+    "description": "A description for 'db.password'"
+  },
+  {
+    "name": "db.url",
+    "type": "java.lang.String",
+    "description": "A description for 'db.url'"
+  },
+  {
+    "name": "db.username",
+    "type": "java.lang.String",
+    "description": "A description for 'db.username'"
+  },
+  {
+    "name": "twilio.token",
+    "type": "java.lang.String",
+    "description": "A description for 'twilio.token'"
+  }
+]}
