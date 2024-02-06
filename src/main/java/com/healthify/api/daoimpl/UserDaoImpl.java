@@ -31,6 +31,7 @@ public class UserDaoImpl implements UserDao {
 	public boolean addUser(User user) {
 		Session session = sf.getCurrentSession();
 		try {
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -198,13 +199,14 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public Role addRole(Role role) {
-		Session session = sf.getCurrentSession();
 		try {
-
+			Session session = sf.getCurrentSession();	
+			session.save(role);
+			session.beginTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return role;
 	}
 
 	@Override

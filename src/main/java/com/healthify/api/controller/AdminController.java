@@ -34,7 +34,7 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 
-	@PostMapping(value= "/add-user", produces = "application/json")
+	@PostMapping(value = "/add-user", produces = "application/json")
 	public ResponseEntity<Boolean> registerUser(@RequestBody @Valid User user) {
 
 		boolean isAdded = userService.addUser(user);
@@ -62,7 +62,7 @@ public class AdminController {
 		}
 	}
 
-	@PutMapping(value="/update-user", produces = "application/json")
+	@PutMapping(value = "/update-user", produces = "application/json")
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		User admn = userService.updateUser(user);
 		if (admn != null) {
@@ -80,7 +80,7 @@ public class AdminController {
 	@TrackExecutionTime
 	public ResponseEntity<List<User>> getAllAdmin() {
 		List<User> list = this.userService.getAllUsers();
-		if (list!=null && !list.isEmpty()) {
+		if (list != null && !list.isEmpty()) {
 			LOG.info("User Found");
 			return new ResponseEntity<List<User>>(list, HttpStatus.OK);
 		} else {
@@ -91,13 +91,19 @@ public class AdminController {
 
 	@PostMapping(value = "/add-role", produces = "application/json")
 	public ResponseEntity<Object> addRole(@RequestBody Role role) {
-		Role userRole = userService.addRole(role);
-		if (userRole != null) {
-			return new ResponseEntity<Object>(role, HttpStatus.CREATED);
-		} else {
-			return new ResponseEntity<Object>("Role Not Added", HttpStatus.OK);
 
+		if (role.getId() == 0 || role.getName() == null) {
+			return new ResponseEntity<Object>("ID & Name cannot be Empty! Please, Enter Valid ID & Role_Name",HttpStatus.BAD_REQUEST);
 		}
+
+		// if the role-id already exists
+		if (userService.getRoleById(role.getId()) != null) {
+			return new ResponseEntity<Object>(role+"  Already Exist In DB ! Please,Try Again..", HttpStatus.CONFLICT);
+		}
+
+		// Add the new role
+		 userService.addRole(role);
+		return new ResponseEntity<Object>(role+"  Added Succesfully In DB !!", HttpStatus.CREATED);
 	}
 
 	@GetMapping(value = "/get-role-by-id/{roleId}", produces = "application/json")
