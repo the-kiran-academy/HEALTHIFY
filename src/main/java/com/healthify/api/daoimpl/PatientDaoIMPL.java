@@ -1,10 +1,10 @@
 package com.healthify.api.daoimpl;
-
 import java.sql.Date;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,9 +26,12 @@ public class PatientDaoIMPL implements PatientDao {
 	public List<Patient> findByFirstnameContainingIgnoreCase(String patientName) {
 
 		Session session = sf.getCurrentSession();
-		try {
+		try 
+		{
 
-		} catch (Exception e) {
+		} 
+		catch (Exception e) 
+		{
 			e.printStackTrace();
 		}
 		return null;
@@ -50,12 +53,19 @@ public class PatientDaoIMPL implements PatientDao {
 	public Long getPatientsCountByDate(Date registeredDate) {
 
 		Session session = sf.getCurrentSession();
-		try {
-
-		} catch (Exception e) {
+		try 
+		{
+			Query<Long> query = session.createQuery("SELECT COUNT(*) FROM Patient WHERE registerDate = :registerDate", Long.class);
+			query.setParameter("registerDate", registeredDate);
+			Long Count = query.uniqueResult();
+			return Count;
+		} 
+		catch (Exception e) 
+		{
 			e.printStackTrace();
+			
 		}
-		return null;
+		 return 0l;
 	}
 
 	@Override
