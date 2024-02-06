@@ -130,7 +130,7 @@ public class AdminController {
 		}
 	}
 
-	@GetMapping(value = "/get-total-count-of-user-by-date-and-type//{date}/{type}", produces = "application/json")
+	@GetMapping(value = "/get-total-count-of-user-by-date-and-type/{date}/{type}", produces = "application/json")
 	public ResponseEntity<Long> getUserCountByDateAndType(@PathVariable Date date, @PathVariable String type) {
 		Long count = userService.getUserCountByDateAndType(date, type);
 		if (count > 0) {
