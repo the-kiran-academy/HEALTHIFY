@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
-import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.security.CustomUserDetail;
 import com.healthify.api.service.UserService;
 
@@ -89,10 +88,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Role addRole(Role role) {
-		
 			return dao.addRole(role);
-		
-		}
+			}
 
 	@Override
 	public Role getRoleById(int roleId) {
