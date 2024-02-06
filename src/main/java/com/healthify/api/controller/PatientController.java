@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.healthify.api.entity.Patient;
@@ -32,8 +34,9 @@ public class PatientController {
 	@Autowired
 	private PatientService patientService;
 
-	@PostMapping(value = "/add-patient")
-	public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) {
+	@PostMapping(value = "/add-patient" ,produces = "application/json")
+	public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) 
+	{      
 		return null;
 	}
 
@@ -72,11 +75,13 @@ public class PatientController {
 
 	}
 
-	@GetMapping(value = "/count-by-registerdate")
-	public ResponseEntity<Long> getPatientsCountByDate(Date registeredDate) {
+	@GetMapping(value = "/count-by-registerdate",produces = "application/json")
+	public ResponseEntity<Long> getPatientsCountByDate(@RequestParam Date registeredDate)
+	{
+		Long Count = patientService.getPatientsCountByDate(registeredDate);
+        return new ResponseEntity<>(Count, HttpStatus.OK);
+    }
 
-		return null;
-	}
 
 	@GetMapping(value = "/top5-patients-by-date")
 	public ResponseEntity<List<Patient>> getTop5PatientAddedByDate() {

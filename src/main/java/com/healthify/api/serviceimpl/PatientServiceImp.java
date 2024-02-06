@@ -1,6 +1,7 @@
 package com.healthify.api.serviceimpl;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,15 @@ public class PatientServiceImp implements PatientService {
 	private PatientDao patientDao;
 
 	@Override
-	public Patient addPatient(Patient patient) {
-		return null;
-
+	public Patient addPatient(Patient patient)
+	{
+		String Id = new SimpleDateFormat("yyyyMMddHHmmss").format(new java.util.Date());
+		  	patient.setId(Id); 
+			
+			java.sql.Date registerdate=new java.sql.Date(System.currentTimeMillis());
+			patient.setRegisterDate(registerdate);
+			
+			return patientDao.addPatient(patient);
 	}
 
 	@Override
