@@ -21,15 +21,9 @@ public class PatientServiceImp implements PatientService {
 	private PatientDao patientDao;
 
 	@Override
-	public Patient addPatient(Patient patient)
-	{
-		String Id = new SimpleDateFormat("yyyyMMddHHmmss").format(new java.util.Date());
-		  	patient.setId(Id); 
-			
-			java.sql.Date registerdate=new java.sql.Date(System.currentTimeMillis());
-			patient.setRegisterDate(registerdate);
-			
-			return patientDao.addPatient(patient);
+	public Patient addPatient(Patient patient) {
+		return null;
+
 	}
 
 	@Override
