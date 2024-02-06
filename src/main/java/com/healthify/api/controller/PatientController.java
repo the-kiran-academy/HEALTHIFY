@@ -34,7 +34,7 @@ public class PatientController {
 	@Autowired
 	private PatientService patientService;
 
-	@PostMapping(value = "/add-patient" ,produces = "application/json")
+	@PostMapping(value = "/add-patient")
 	public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) 
 	{      
 		return null;
