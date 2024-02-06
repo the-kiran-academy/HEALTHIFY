@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String generateReport() {
-		
+
 		return "generated";
 	}
 

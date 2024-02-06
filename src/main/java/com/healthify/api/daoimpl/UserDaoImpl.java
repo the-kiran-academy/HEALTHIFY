@@ -1,6 +1,5 @@
 package com.healthify.api.daoimpl;
 
-
 import java.sql.Date;
 import java.util.List;
 
@@ -78,18 +77,18 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean deleteUserById(String id){
+	public boolean deleteUserById(String id) {
 		Session session = sf.getCurrentSession();
-		
+
 		try {
-	        User user = session.get(User.class, id);	        
-	        if (user != null) {
-	            session.delete(user);
-	            return true;
-	        } else {
-	            return false;
-	        }
-	    } catch (Exception e) {
+			User user = session.get(User.class, id);
+			if (user != null) {
+				session.delete(user);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
