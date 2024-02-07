@@ -34,7 +34,7 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 
-	@PostMapping(value= "/add-user", produces = "application/json")
+	@PostMapping(value = "/add-user", produces = "application/json")
 	public ResponseEntity<Boolean> registerUser(@RequestBody @Valid User user) {
 
 		boolean isAdded = userService.addUser(user);
@@ -62,7 +62,7 @@ public class AdminController {
 		}
 	}
 
-	@PutMapping(value="/update-user", produces = "application/json")
+	@PutMapping(value = "/update-user", produces = "application/json")
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		User admn = userService.updateUser(user);
 		if (admn != null) {
@@ -80,7 +80,7 @@ public class AdminController {
 	@TrackExecutionTime
 	public ResponseEntity<List<User>> getAllAdmin() {
 		List<User> list = this.userService.getAllUsers();
-		if (list!=null && !list.isEmpty()) {
+		if (list != null && !list.isEmpty()) {
 			LOG.info("User Found");
 			return new ResponseEntity<List<User>>(list, HttpStatus.OK);
 		} else {
