@@ -2,11 +2,15 @@ package com.healthify.api.daoimpl;
 
 import java.sql.Date;
 import java.util.List;
+import javax.transaction.Transactional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -16,6 +20,7 @@ import com.healthify.api.entity.Otp;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
 import com.healthify.api.security.CustomUserDetail;
+
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -144,12 +149,21 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public Long getUsersTotalCounts(String type) {
 		Session session = sf.getCurrentSession();
+		Long l=null;
 		try {
 
+			Criteria criteria = session.createCriteria(User.class, "u");
+			criteria.createAlias("u.roles", "r");
+
+			criteria.add(Restrictions.eq("r.name", type));
+			criteria.setProjection(Projections.rowCount());
+
+			l = (Long) criteria.uniqueResult();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return l;
 	}
 
 	@Override
@@ -164,6 +178,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
+	@Transactional
 	public List<User> getUserByFirstName(String firstName) {
 		Session session = sf.getCurrentSession();
 		try {

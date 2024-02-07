@@ -21,9 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.healthify.api.aop.TrackExecutionTime;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.BadRequestException;
 import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.exception.ResourceNotFoundException;
 import com.healthify.api.service.UserService;
+
+
 
 @RestController
 @RequestMapping(value = "/admin")
@@ -122,6 +125,13 @@ public class AdminController {
 
 	@GetMapping(value = "/get-total-count-of-user-by-type/{type}", produces = "application/json")
 	public ResponseEntity<Long> getUsersTotalCountsByType(@PathVariable String type) {
+		List<String> list=List.of("ROLE_ADMIN","ROLE_DOCTOR","ROLE_PHARMACIST","ROLE_RECEPTIONIST","ROLE_NURSE","ROLE_SECURITY");
+		  if (type == null || type.isEmpty()) {
+		        throw new BadRequestException("The 'type' parameter is required.");
+		    }
+		if(!list.contains(type)) {
+			throw new BadRequestException("Bad request,check the URL");
+		}
 		Long count = userService.getUsersTotalCounts(type);
 		if (count > 0) {
 			return new ResponseEntity<Long>(count, HttpStatus.OK);
