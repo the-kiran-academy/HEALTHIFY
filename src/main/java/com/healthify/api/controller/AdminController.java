@@ -2,6 +2,7 @@ package com.healthify.api.controller;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -34,7 +35,7 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 
-	@PostMapping(value = "/add-user", produces = "application/json")
+	@PostMapping(value= "/add-user", produces = "application/json")
 	public ResponseEntity<Boolean> registerUser(@RequestBody @Valid User user) {
 
 		boolean isAdded = userService.addUser(user);
@@ -62,7 +63,7 @@ public class AdminController {
 		}
 	}
 
-	@PutMapping(value = "/update-user", produces = "application/json")
+	@PutMapping(value="/update-user", produces = "application/json")
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		User admn = userService.updateUser(user);
 		if (admn != null) {
@@ -80,7 +81,7 @@ public class AdminController {
 	@TrackExecutionTime
 	public ResponseEntity<List<User>> getAllAdmin() {
 		List<User> list = this.userService.getAllUsers();
-		if (list != null && !list.isEmpty()) {
+		if (list!=null && !list.isEmpty()) {
 			LOG.info("User Found");
 			return new ResponseEntity<List<User>>(list, HttpStatus.OK);
 		} else {
@@ -99,17 +100,17 @@ public class AdminController {
 
 		}
 	}
-
 	@GetMapping(value = "/get-role-by-id/{roleId}", produces = "application/json")
 	public ResponseEntity<Role> getRoleById(@PathVariable int roleId) {
 		Role role = userService.getRoleById(roleId);
-		if (role != null) {
-			return new ResponseEntity<Role>(role, HttpStatus.OK);
-		} else {
-			throw new ResourceNotFoundException("Role Not Found For ID : " + roleId);
-		}
+		return Optional.ofNullable(role)
+		               .map(r -> new ResponseEntity<>(r, HttpStatus.OK))
+		               .orElseThrow(() -> new ResourceNotFoundException("Role Not Found For ID: " + roleId));
+			//Role role = userService.getRoleById(roleId);
+			//if (role != null) {
+			//return new ResponseEntity<Role>(role, HttpStatus.OK);//} else {
+			//throw new ResourceNotFoundException("Role Not Found For ID : " + roleId);	//}
 	}
-
 	@GetMapping(value = "/get-total-count-of user", produces = "application/json")
 	public ResponseEntity<Long> getUsersTotalCounts() {
 		Long count = userService.getUsersTotalCounts();
