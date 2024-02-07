@@ -1,4 +1,4 @@
-package com.healthify.api.entity;
+  package com.healthify.api.entity;
 
 import java.sql.Date;
 import java.util.Set;
@@ -35,7 +35,7 @@ public class User {
 	@Column(name = "FirstName",nullable = false)
     @Pattern(regexp = "^[a-zA-Z]+(\\s[a-zA-Z]+)*$", message = "Invalid first name")
 	private String firstname;
-
+ 
 	@Column(name = "LastName",nullable = false)
     @Pattern(regexp = "^[a-zA-Z]+(\\s[a-zA-Z]+)*$", message = "Invalid last name")
 	private String lastname;
@@ -206,11 +206,9 @@ public class User {
 	public String getQuestion() {
 		return Question;
 	}
-
 	public void setQuestion(String question) {
-		Question = question;
+	    this.Question = question;
 	}
-
 	public String getAnswer() {
 		return answer;
 	}

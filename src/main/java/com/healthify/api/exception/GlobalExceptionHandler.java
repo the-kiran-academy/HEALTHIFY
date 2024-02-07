@@ -4,7 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.validation.ConstraintViolationException;
+
+import org.apache.commons.lang.exception.ExceptionUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -14,6 +21,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.healthify.api.controller.AdminController;
+
 /**
  * @author RAM
  *
@@ -21,6 +30,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+	private static Logger LOG = LogManager.getLogger(AdminController.class);
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public HashMap<String, Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
@@ -71,6 +81,15 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
 	}
 	
+	public ResponseEntity<Object> handleValidationException(MethodArgumentNotValidException ex) {
+        Map<String, String> validationErrors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach(error -> {
+            String fieldName = error instanceof FieldError ? ((FieldError) error).getField() : error.getObjectName();
+            validationErrors.put(fieldName, error.getDefaultMessage());
+        });
+        return new ResponseEntity<>(validationErrors, HttpStatus.BAD_REQUEST);
+    }
+	  
 	
 
 }

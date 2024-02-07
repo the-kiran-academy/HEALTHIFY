@@ -1,7 +1,16 @@
 package com.healthify.api.serviceimpl;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
+
+import javax.transaction.Transactional;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,11 +19,15 @@ import org.springframework.stereotype.Service;
 import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.InvalidCredentialsException;
+import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.security.CustomUserDetail;
 import com.healthify.api.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
+	
+	private static Logger LOG = LogManager.getLogger(UserServiceImpl.class);
 
 	@Autowired
 	public BCryptPasswordEncoder passwordEncoder;
@@ -26,9 +39,39 @@ public class UserServiceImpl implements UserService {
 	private String[] roles;
 
 	@Override
-	public boolean addUser(User user) {
-		return false;
 
+	public boolean addUser(User user) {
+		
+		
+		
+		 
+			String password = user.getPassword();
+			
+			user.setPassword(passwordEncoder.encode(password));
+			
+			 user.setCreatedDate(Date.valueOf(LocalDate.now()));
+			 
+			  // Handle the specialties association
+	            if (user.getSpecialties() != null) {
+	                user.getSpecialties().forEach(specialty -> {
+	                    specialty.setUser(user);
+	                });
+	            } 
+			
+		
+		
+		
+		 boolean isAdded = dao.addUser(user);
+
+	        if (isAdded) {
+	            LOG.info("User added successfully: {}", user.getUsername());
+	            // Additional logic for success, if needed
+	            return true;
+	        } else {
+	            LOG.error("Failed to add user: {}", user.getUsername());
+	            // Additional logic for failure, if needed
+	            return false;
+	        }
 	}
 
 	@Override

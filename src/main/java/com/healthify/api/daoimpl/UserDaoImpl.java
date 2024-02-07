@@ -3,18 +3,25 @@ package com.healthify.api.daoimpl;
 import java.sql.Date;
 import java.util.List;
 
+import javax.validation.ConstraintViolationException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Otp;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+
+import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.security.CustomUserDetail;
 
 @Repository
@@ -28,15 +35,59 @@ public class UserDaoImpl implements UserDao {
 	public PasswordEncoder passwordEncoder;
 
 	@Override
+	
 	public boolean addUser(User user) {
+		
 		Session session = sf.getCurrentSession();
-		try {
+		
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
+		// Check for duplicate user ID before attempting to save the user
+        User existingUserById = session.createQuery("FROM User WHERE UserName = :userId", User.class)
+                .setParameter("userId", user.getUsername())
+                .uniqueResult();
+
+        if (existingUserById != null) {
+            LOG.error("Error adding user due to duplicate user ID: {}", user.getUsername());
+            throw new ResourceAlreadyExistsException("User with ID already exists: " + user.getUsername());
+        }
+
+        // Check for duplicate email ID before attempting to save the user
+        User existingUserByEmail = session.createQuery("FROM User WHERE EmailId = :email", User.class)
+                .setParameter("email", user.getEmailid())
+                .uniqueResult();
+
+        if (existingUserByEmail != null) {
+            LOG.error("Error adding user due to duplicate email ID: {}", user.getEmailid());
+            throw new ResourceAlreadyExistsException("User with email ID already exists: " + user.getEmailid());
+        }
+
+        // Check for duplicate mobile number before attempting to save the user
+        User existingUserByMobile = session.createQuery("FROM User WHERE MobileNo = :mobileNumber", User.class)
+                .setParameter("mobileNumber", user.getMobileno())
+                .uniqueResult();
+
+        if (existingUserByMobile != null) {
+            LOG.error("Error adding user due to duplicate mobile number: {}", user.getMobileno());
+            throw new ResourceAlreadyExistsException("User with mobile number already exists: " + user.getMobileno());
+        }
+
+        try {
+           
+
+        	  session.save(user);
+              return true;
+         
+           
+        } catch (Exception e) {
+           
+            LOG.error("Error adding user. Exception details: {}", e.getMessage(), e);
+         // Rollback the transaction in case of an exception
+            throw new RuntimeException("Error adding user", e);
+           
+        }
+		
 	}
+	
 
 	@Override
 	public User loginUser(User user) {
