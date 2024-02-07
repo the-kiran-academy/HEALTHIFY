@@ -26,8 +26,6 @@ import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.exception.ResourceNotFoundException;
 import com.healthify.api.service.UserService;
 
-
-
 @RestController
 @RequestMapping(value = "/admin")
 public class AdminController {

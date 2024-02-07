@@ -19,7 +19,6 @@ import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
 import com.healthify.api.security.CustomUserDetail;
 
-
 @Repository
 public class UserDaoImpl implements UserDao {
 	private static Logger LOG = LogManager.getLogger(UserDaoImpl.class);
