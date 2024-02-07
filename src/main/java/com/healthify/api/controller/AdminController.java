@@ -23,6 +23,7 @@ import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
 import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.exception.ResourceNotFoundException;
+import com.healthify.api.exception.SomethingWentWrongException;
 import com.healthify.api.service.UserService;
 
 @RestController
@@ -34,7 +35,7 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 
-	@PostMapping(value= "/add-user", produces = "application/json")
+	@PostMapping(value = "/add-user", produces = "application/json")
 	public ResponseEntity<Boolean> registerUser(@RequestBody @Valid User user) {
 
 		boolean isAdded = userService.addUser(user);
@@ -62,7 +63,7 @@ public class AdminController {
 		}
 	}
 
-	@PutMapping(value="/update-user", produces = "application/json")
+	@PutMapping(value = "/update-user", produces = "application/json")
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		User admn = userService.updateUser(user);
 		if (admn != null) {
@@ -78,15 +79,15 @@ public class AdminController {
 
 	@GetMapping(value = "get-all-user", produces = "application/json")
 	@TrackExecutionTime
-	public ResponseEntity<List<User>> getAllAdmin() {
-		List<User> list = this.userService.getAllUsers();
-		if (list!=null && !list.isEmpty()) {
-			LOG.info("User Found");
-			return new ResponseEntity<List<User>>(list, HttpStatus.OK);
-		} else {
-			LOG.info("User Not Found");
-			throw new ResourceNotFoundException("User Not Found");
-		}
+	public ResponseEntity<List<User>> getAllUser() {
+		try {
+	        List<User> allUsers = userService.getAllUsers();
+	        return new ResponseEntity<>(allUsers, HttpStatus.OK);
+	    } catch (ResourceNotFoundException e) {
+	        throw new ResourceNotFoundException("User Not Found");
+	    } catch (Exception e) {
+	        throw new SomethingWentWrongException("Something Went Wrong While Fetching User");
+	    }
 	}
 
 	@PostMapping(value = "/add-role", produces = "application/json")

@@ -3,6 +3,9 @@ package com.healthify.api.daoimpl;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -15,6 +18,7 @@ import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Otp;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.SomethingWentWrongException;
 import com.healthify.api.security.CustomUserDetail;
 
 @Repository
@@ -77,19 +81,19 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean deleteUserById(String id){
+	public boolean deleteUserById(String id) {
 		Session session = sf.getCurrentSession();
-		
+
 		try {
-	        User user = session.get(User.class, id);
-	        
-	        if (user != null) {
-	            session.delete(user);
-	            return true;
-	        } else {
-	            return false;
-	        }
-	    } catch (Exception e) {
+			User user = session.get(User.class, id);
+
+			if (user != null) {
+				session.delete(user);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -110,14 +114,17 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<User> getAllUsers() {
-		Session session = sf.getCurrentSession();
-		try {
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+	    try (Session session = sf.openSession()){
+	        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+	        CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
+	        criteriaQuery.from(User.class);
+	        return session.createQuery(criteriaQuery).getResultList();
+	    } catch (Exception e) {
+	    	
+	        throw new SomethingWentWrongException("Something Went Wrong During Retrieve All Users!");
+	    }
 	}
+
 
 	@Override
 	public User updateUser(User user) {
