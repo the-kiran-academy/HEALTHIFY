@@ -111,6 +111,7 @@ public class AdminController {
 			//return new ResponseEntity<Role>(role, HttpStatus.OK);//} else {
 			//throw new ResourceNotFoundException("Role Not Found For ID : " + roleId);	//}
 	}
+	
 	@GetMapping(value = "/get-total-count-of user", produces = "application/json")
 	public ResponseEntity<Long> getUsersTotalCounts() {
 		Long count = userService.getUsersTotalCounts();
