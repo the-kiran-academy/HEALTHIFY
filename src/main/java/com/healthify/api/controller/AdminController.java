@@ -23,6 +23,7 @@ import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
 import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.exception.ResourceNotFoundException;
+import com.healthify.api.exception.SomethingWentWrongException;
 import com.healthify.api.service.UserService;
 
 @RestController
@@ -90,22 +91,17 @@ public class AdminController {
 	}
 
 	@PostMapping(value = "/add-role", produces = "application/json")
-	public ResponseEntity<Object> addRole(@RequestBody Role role) {
+	public ResponseEntity<Object> addRole(@RequestBody @Valid Role role) {
 
-		if (role.getId() == 0 || role.getName() == null) {
-			return new ResponseEntity<Object>("ID & Name cannot be Empty! Please, Enter Valid ID & Role_Name",HttpStatus.BAD_REQUEST);
+		Role userRole = userService.addRole(role);
+		if (userRole != null) {
+			return new ResponseEntity<Object>(role +"  Added Succesfully", HttpStatus.CREATED);
+		} else {
+			return new ResponseEntity<Object>(role +" Unable To Add", HttpStatus.BAD_REQUEST);
 		}
-
-		// if the role-id already exists
-		if (userService.getRoleById(role.getId()) != null) {
-			return new ResponseEntity<Object>(role+"  Already Exist In DB ! Please,Try Again..", HttpStatus.CONFLICT);
-		}
-
-		// Add the new role
-		 userService.addRole(role);
-		return new ResponseEntity<Object>(role+"  Added Succesfully In DB !!", HttpStatus.CREATED);
 	}
 
+	
 	@GetMapping(value = "/get-role-by-id/{roleId}", produces = "application/json")
 	public ResponseEntity<Role> getRoleById(@PathVariable int roleId) {
 		Role role = userService.getRoleById(roleId);
