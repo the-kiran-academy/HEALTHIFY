@@ -3,24 +3,18 @@ package com.healthify.api.daoimpl;
 import java.sql.Date;
 import java.util.List;
 
-import javax.validation.ConstraintViolationException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Otp;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
-
 import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.security.CustomUserDetail;
 

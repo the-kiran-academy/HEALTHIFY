@@ -3,11 +3,6 @@ package com.healthify.api.serviceimpl;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
-
-import javax.transaction.Transactional;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,8 +14,6 @@ import org.springframework.stereotype.Service;
 import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
-import com.healthify.api.exception.InvalidCredentialsException;
-import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.security.CustomUserDetail;
 import com.healthify.api.service.UserService;
 

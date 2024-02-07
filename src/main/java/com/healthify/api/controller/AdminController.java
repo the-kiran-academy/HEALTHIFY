@@ -1,20 +1,15 @@
 package com.healthify.api.controller;
 
 import java.sql.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,10 +18,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.healthify.api.aop.TrackExecutionTime;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
-import com.healthify.api.exception.InvalidCredentialsException;
 import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.exception.ResourceNotFoundException;
 import com.healthify.api.service.UserService;
@@ -48,11 +43,12 @@ public class AdminController {
 			
 		        boolean isAdded = userService.addUser(user);
 		        if (isAdded) {
-		            LOG.info("Added User: {}", user);
-		            return new ResponseEntity<>(true, HttpStatus.CREATED);
-		        } else {
-		            return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
-		        }
+		        	LOG.info("Added User :" + user);
+					return new ResponseEntity<Boolean>(isAdded, HttpStatus.CREATED);
+				} else {
+					LOG.info("User Already Exixts With >ID:" + user.getUsername());
+					throw new ResourceAlreadyExistsException("User Already Exixts With >ID:" + user.getUsername());
+				}
 		   
 		
 
