@@ -51,19 +51,18 @@ public class GlobalExceptionHandler {
       @ResponseStatus(code=HttpStatus.BAD_REQUEST)
 	  public ResponseEntity<String> badRequestException(BadRequestException ex) {
     	  
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    	  return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
       }
 
 	@ExceptionHandler(InvalidCredentialsException.class)
 	public ResponseEntity<String> invalidCredientials(InvalidCredentialsException ex) {
 		
-         return new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
+		  return new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
 	}
 
 	@ExceptionHandler(ResourceAlreadyExistsException.class)
 	public ResponseEntity<String> resourceAlreadyExists(ResourceAlreadyExistsException ex) {
-
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
+           return new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
 	}
 
 	@ExceptionHandler(ResourceNotFoundException.class)

@@ -2,8 +2,6 @@ package com.healthify.api.daoimpl;
 
 import java.sql.Date;
 import java.util.List;
-import javax.transaction.Transactional;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Criteria;
@@ -178,8 +176,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	@Transactional
-	public List<User> getUserByFirstName(String firstName) {
+     public List<User> getUserByFirstName(String firstName) {
 		Session session = sf.getCurrentSession();
 		try {
 
