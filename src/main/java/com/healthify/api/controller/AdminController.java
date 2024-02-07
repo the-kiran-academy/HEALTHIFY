@@ -107,7 +107,7 @@ public class AdminController {
 		               .map(r -> new ResponseEntity<>(r, HttpStatus.OK))
 		               .orElseThrow(() -> new ResourceNotFoundException("Role Not Found For ID: " + roleId));
 			//Role role = userService.getRoleById(roleId);
-			//if (role != null) {
+			//if (role != null){
 			//return new ResponseEntity<Role>(role, HttpStatus.OK);//} else {
 			//throw new ResourceNotFoundException("Role Not Found For ID : " + roleId);	//}
 	}
