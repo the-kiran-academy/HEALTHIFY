@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean addUser(User user) {
-		return dao.addUser(user);
+		return false;
 
 	}
 
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getAllUsers() {
 
-		return dao.getAllUsers();
+		return null;
 
 	}
 
@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String generateReport() {
-
+		
 		return "generated";
 	}
 
