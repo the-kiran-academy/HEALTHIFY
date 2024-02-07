@@ -210,13 +210,13 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public Role getRoleById(int roleId) {
 		Session session = sf.getCurrentSession();
-		Role getGole = null;
+		Role role = null;
 		try {
-			getGole = session.get(Role.class, roleId);
+			role = session.get(Role.class, roleId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return getGole;
+		return role;
 	}
 
 }
