@@ -140,11 +140,12 @@ public class AdminController {
 		}
 	}
 
-	@GetMapping(value = "/get-user-by-firtname/{firstName}", produces = "application/json")
+	@GetMapping(value = "/get-user-by-firstname/{firstName}", produces = "application/json")
 	public ResponseEntity<List<User>> getUserByFirstName(@PathVariable String firstName) {
+		
 		List<User> list = userService.getUserByFirstName(firstName);
-		if (!list.isEmpty()) {
-			return new ResponseEntity<List<User>>(list, HttpStatus.OK);
+		if (list != null ) {
+			return new ResponseEntity<List<User>>(list, HttpStatus.FOUND);
 		} else {
 			throw new ResourceNotFoundException("User Not Exists For Name : " + firstName);
 		}

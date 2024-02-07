@@ -2,6 +2,8 @@ package com.healthify.api.serviceimpl;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,6 +15,9 @@ import com.healthify.api.entity.User;
 import com.healthify.api.security.CustomUserDetail;
 import com.healthify.api.service.UserService;
 
+
+import springfox.documentation.swagger2.mappers.ModelMapper;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -21,6 +26,10 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDao dao;
+	
+	@Autowired
+	private ModelMapper mapper;
+	
 
 	@Value("${user.roles}")
 	private String[] roles;
@@ -83,8 +92,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> getUserByFirstName(String firstName) {
-		return dao.getUserByFirstName(firstName);
-	}
+		
+			return dao.getUserByFirstName(firstName);
+		}
+	
 
 	@Override
 	public Role addRole(Role role) {
