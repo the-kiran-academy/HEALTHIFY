@@ -106,6 +106,7 @@ public class AdminController {
 		return Optional.ofNullable(role)
 		               .map(r -> new ResponseEntity<>(r, HttpStatus.OK))
 		               .orElseThrow(() -> new ResourceNotFoundException("Role Not Found For ID: " + roleId));
+		
 			//Role role = userService.getRoleById(roleId);
 			//if (role != null){
 			//return new ResponseEntity<Role>(role, HttpStatus.OK);//} else {
