@@ -3,9 +3,9 @@ package com.healthify.api.serviceimpl;
 import java.sql.Date;
 import java.util.List;
 
-import javax.transaction.Transactional;
 
-import org.hibernate.SessionFactory;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,20 +16,19 @@ import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
 import com.healthify.api.exception.ResourceNotFoundException;
-import com.healthify.api.exception.SomethingWentWrongException;
+
 import com.healthify.api.security.CustomUserDetail;
 import com.healthify.api.service.UserService;
-import springfox.documentation.swagger2.mappers.ModelMapper;
+
 
 @Service
 public class UserServiceImpl implements UserService {
 
-	@Autowired
-	private ModelMapper mapper;
+	
 	@Autowired
 	public BCryptPasswordEncoder passwordEncoder;
 
-	private SessionFactory sf;
+	
 
 	@Autowired
 	private UserDao dao;
