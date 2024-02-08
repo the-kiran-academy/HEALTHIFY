@@ -12,7 +12,7 @@ public interface UserDao {
 	public CustomUserDetail loadUserByUserId(String userId);
 
 	boolean addUser(User user);
-	
+
 	User loginUser(User user);
 
 	boolean deleteUserById(String id);
