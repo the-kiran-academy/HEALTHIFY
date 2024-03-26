@@ -55,10 +55,6 @@ public class PatientDaoIMPL implements PatientDao {
 		Session session = sf.getCurrentSession();
 		try 
 		{
-			Query<Long> query = session.createQuery("SELECT COUNT(*) FROM Patient WHERE registerDate = :registerDate", Long.class);
-			query.setParameter("registerDate", registeredDate);
-			Long Count = query.uniqueResult();
-			return Count;
 		} 
 		catch (Exception e) 
 		{
