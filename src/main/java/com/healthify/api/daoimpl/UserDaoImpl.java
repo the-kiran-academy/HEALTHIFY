@@ -148,8 +148,8 @@ public class UserDaoImpl implements UserDao {
 				}
 
 				for (Specialty specialty : user.getSpecialties()) {
-					session.createQuery("DELETE FROM Specialty WHERE user_id = :userId AND name = :name")
-							.setParameter("userId", user.getUsername()).setParameter("name", specialty.getName())
+					session.createQuery("DELETE FROM Specialty WHERE user_id = :userId")
+							.setParameter("userId", user.getUsername())
 							.executeUpdate();
 					System.out.println(" Deleted record from Specialty ");
 

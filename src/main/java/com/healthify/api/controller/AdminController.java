@@ -34,7 +34,7 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 
-	@PostMapping(value = "/add-user", produces = "application/json")
+	@PostMapping(value= "/add-user", produces = "application/json")
 	public ResponseEntity<Boolean> registerUser(@RequestBody @Valid User user) {
 
 		boolean isAdded = userService.addUser(user);
