@@ -1,7 +1,7 @@
 db:
   driver: com.mysql.cj.jdbc.Driver
-  password: admin
-  url: jdbc:mysql://localhost:3306/healthify-dev?createDatabaseIfNotExist=true
+  password: root
+  url: jdbc:mysql://localhost:3306/healthifydev?createDatabaseIfNotExist=true
   username: root
 entitymanager:
   packagesToScan: com
@@ -11,7 +11,7 @@ hibernate:
   hbm2ddl:
     auto: update
   show_sql: true
-  
+
 logging:
   file:
     name: HealthifyAppLogs/healthify.log
@@ -36,23 +36,21 @@ spring:
     username: attendance2715@gmail.com
 user:
   roles: ROLE_ADMIN,ROLE_DOCTOR,ROLE_PHARMACIST,ROLE_RECEPTIONIST,ROLE_NURSE
-  
+
 management:
   endpoints:
-    web: 
+    web:
       exposure:
         include: "*"  # This exposes all endpoints, you can customize which ones to expose
-      base-path: /actuator 
+      base-path: /actuator
   endpoint:
     health:
       show-details: always
     prometheus:
       enabled: true
     metrics:
-      enabled: true 
-      
+      enabled: true
+
 twilio:
   sid: AC3d649bc4035788eb97d6b27f311cd91b
   token: 5252b19affcf6b71b2e4e99fd09ba5de
- 
-                  

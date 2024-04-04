@@ -3,6 +3,9 @@ package com.healthify.api.daoimpl;
 import java.sql.Date;
 import java.util.List;
 
+import com.healthify.api.exception.ResourceAlreadyExistsException;
+import com.healthify.api.exception.SomethingWentWrongException;
+import com.twilio.exception.InvalidRequestException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -19,204 +22,222 @@ import com.healthify.api.security.CustomUserDetail;
 
 @Repository
 public class UserDaoImpl implements UserDao {
-	private static Logger LOG = LogManager.getLogger(UserDaoImpl.class);
+    private static Logger LOG = LogManager.getLogger(UserDaoImpl.class);
 
-	@Autowired
-	private SessionFactory sf;
+    @Autowired
+    private SessionFactory sf;
 
-	@Autowired
-	public PasswordEncoder passwordEncoder;
+    @Autowired
+    public PasswordEncoder passwordEncoder;
 
-	@Override
-	public boolean addUser(User user) {
-		Session session = sf.getCurrentSession();
-		try {
+    @Override
+    public boolean addUser(User user) {
+        Session session = sf.getCurrentSession();
+        try {
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
-	@Override
-	public User loginUser(User user) {
-		Session session = sf.getCurrentSession();
-		User usr = null;
-		try {
-			usr = session.get(User.class, user.getUsername());
-			boolean matches = passwordEncoder.matches(user.getPassword(), usr.getPassword());
-			if (matches) {
-				return usr;
-			} else {
-				usr = null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return usr;
+    @Override
+    public User loginUser(User user) {
+        Session session = sf.getCurrentSession();
+        User usr = null;
+        try {
+            usr = session.get(User.class, user.getUsername());
+            boolean matches = passwordEncoder.matches(user.getPassword(), usr.getPassword());
+            if (matches) {
+                return usr;
+            } else {
+                usr = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return usr;
 
-	}
+    }
 
-	@Override
-	public CustomUserDetail loadUserByUserId(String userId) {
-		Session session = sf.getCurrentSession();
-		CustomUserDetail user = new CustomUserDetail();
-		User usr = null;
-		try {
-			usr = session.get(User.class, userId);
-			if (usr != null) {
-				user.setUserid(usr.getUsername());
-				user.setPassword(usr.getPassword());
-				user.setRoles(usr.getRoles());
-			}
-			System.out.println("load user ..." + user);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return user;
-	}
+    @Override
+    public CustomUserDetail loadUserByUserId(String userId) {
+        Session session = sf.getCurrentSession();
+        CustomUserDetail user = new CustomUserDetail();
+        User usr = null;
+        try {
+            usr = session.get(User.class, userId);
+            if (usr != null) {
+                user.setUserid(usr.getUsername());
+                user.setPassword(usr.getPassword());
+                user.setRoles(usr.getRoles());
+            }
+            System.out.println("load user ..." + user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 
-	@Override
-	public boolean deleteUserById(String id){
-		Session session = sf.getCurrentSession();
-		
-		try {
-	        User user = session.get(User.class, id);
-	        
-	        if (user != null) {
-	            session.delete(user);
-	            return true;
-	        } else {
-	            return false;
-	        }
-	    } catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
+    @Override
+    public boolean deleteUserById(String id) {
+        Session session = sf.getCurrentSession();
 
-	@Override
-	public User getUserById(String id) {
-		Session session = sf.getCurrentSession();
-		User user = null;
-		try {
-			user = session.get(User.class, id);
-		} catch (Exception e) {
-			LOG.info(e.getMessage());
+        try {
+            User user = session.get(User.class, id);
 
-		}
-		return user;
-	}
+            if (user != null) {
+                session.delete(user);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
-	@Override
-	public List<User> getAllUsers() {
-		Session session = sf.getCurrentSession();
-		try {
+    @Override
+    public User getUserById(String id) {
+        Session session = sf.getCurrentSession();
+        User user = null;
+        try {
+            user = session.get(User.class, id);
+        } catch (Exception e) {
+            LOG.info(e.getMessage());
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+        }
+        return user;
+    }
 
-	@Override
-	public User updateUser(User user) {
-		Session session = sf.getCurrentSession();
-		try {
+    @Override
+    public List<User> getAllUsers() {
+        Session session = sf.getCurrentSession();
+        try {
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-	@Override
-	public Long getUsersTotalCounts() {
-		Session session = sf.getCurrentSession();
-		try {
+    @Override
+    public User updateUser(User user) {
+        Session session = sf.getCurrentSession();
+        try {
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-	@Override
-	public Long getUsersTotalCounts(String type) {
-		Session session = sf.getCurrentSession();
-		try {
+    @Override
+    public Long getUsersTotalCounts() {
+        Session session = sf.getCurrentSession();
+        try {
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-	@Override
-	public Long getUserCountByDateAndType(Date registeredDate, String type) {
-		Session session = sf.getCurrentSession();
-		try {
+    @Override
+    public Long getUsersTotalCounts(String type) {
+        Session session = sf.getCurrentSession();
+        try {
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-	@Override
-	public List<User> getUserByFirstName(String firstName) {
-		Session session = sf.getCurrentSession();
-		try {
+    @Override
+    public Long getUserCountByDateAndType(Date registeredDate, String type) {
+        Session session = sf.getCurrentSession();
+        try {
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-	@Override
-	public boolean saveOtp(Otp otp) {
-		Session session = sf.getCurrentSession();
-		try {
+    @Override
+    public List<User> getUserByFirstName(String firstName) {
+        Session session = sf.getCurrentSession();
+        try {
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-	@Override
-	public Otp getOtpByUser(String userId) {
-		Session session = sf.getCurrentSession();
-		try {
+    @Override
+    public boolean saveOtp(Otp otp) {
+        Session session = sf.getCurrentSession();
+        try {
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
-	@Override
-	public Role addRole(Role role) {
-		Session session = sf.getCurrentSession();
-		try {
+    @Override
+    public Otp getOtpByUser(String userId) {
+        Session session = sf.getCurrentSession();
+        try {
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-	@Override
-	public Role getRoleById(int roleId) {
-		Session session = sf.getCurrentSession();
-		Role role = null;
-		try {
-			role = session.get(Role.class, roleId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return role;
-	}
+    @Override
+    public Role addRole(Role role) {
+        Session session = sf.getCurrentSession();
+
+        try {
+            // Check if role-id and role-name are provided
+            if (role.getId() == null || role.getName().isEmpty()) {
+                throw new InvalidRequestException("Role ID and Role Name are required");
+            }
+
+            // Check if a role with the same role-id already exists
+            Role existingRole = session.get(Role.class, role.getId());
+            if (existingRole != null) {
+                throw new ResourceAlreadyExistsException("Role with ID " + role.getId() + " already exists");
+            }
+
+            // Save the new role
+            session.save(role);
+            return role;
+        } catch (InvalidRequestException | ResourceAlreadyExistsException e) {
+            // Throw the exception to be handled by the controller
+            throw e;
+        } catch (Exception e) {
+            // Handle any unexpected exceptions
+            throw new SomethingWentWrongException("An unexpected error occurred while adding the role");
+        }
+    }
+
+
+    @Override
+    public Role getRoleById(int roleId) {
+        Session session = sf.getCurrentSession();
+        Role role = null;
+        try {
+            role = session.get(Role.class, roleId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return role;
+    }
 
 }

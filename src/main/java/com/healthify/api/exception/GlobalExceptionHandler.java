@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import com.twilio.exception.InvalidRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -16,61 +17,64 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * @author RAM
- *
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public HashMap<String, Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-		HashMap<String, Object> map = new HashMap<>();
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public HashMap<String, Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        HashMap<String, Object> map = new HashMap<>();
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String formattedTime = sdf.format(new Date());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formattedTime = sdf.format(new Date());
 
-		map.put("Time", formattedTime);
-		List<FieldError> fieldErrors = ex.getFieldErrors();
-		for (FieldError fieldError : fieldErrors) {
-			map.put(fieldError.getField(), fieldError.getDefaultMessage());
-		}
+        map.put("Time", formattedTime);
+        List<FieldError> fieldErrors = ex.getFieldErrors();
+        for (FieldError fieldError : fieldErrors) {
+            map.put(fieldError.getField(), fieldError.getDefaultMessage());
+        }
 
 //		ex.getBindingResult().getFieldErrors().forEach(error -> {
 //			map.put(error.getField(), error.getDefaultMessage());
 //		});
-		return map;
-	}
+        return map;
+    }
 
-	@ExceptionHandler(BadCredentialsException.class)
-	public ResponseEntity<String> badCredentialsException(BadCredentialsException ex) {
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<String> badCredentialsException(BadCredentialsException ex) {
+        return new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
 
-	}
+    }
 
-	@ExceptionHandler(InvalidCredentialsException.class)
-	public ResponseEntity<String> invalidCredientials(InvalidCredentialsException ex) {
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<String> invalidCredientials(InvalidCredentialsException ex) {
 
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
-	}
+        return new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
+    }
 
-	@ExceptionHandler(ResourceAlreadyExistsException.class)
-	public ResponseEntity<String> resourceAlreadyExists(ResourceAlreadyExistsException ex) {
+    @ExceptionHandler(ResourceAlreadyExistsException.class)
+    public ResponseEntity<String> resourceAlreadyExists(ResourceAlreadyExistsException ex) {
 
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
-	}
+        return new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
+    }
 
-	@ExceptionHandler(ResourceNotFoundException.class)
-	public ResponseEntity<String> resourceNotFoundException(ResourceNotFoundException ex) {
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<String> resourceNotFoundException(ResourceNotFoundException ex) {
 
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
-	}
+        return new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
+    }
 
-	@ExceptionHandler(SomethingWentWrongException.class)
-	public ResponseEntity<String> somethingWentWrongException(SomethingWentWrongException ex) {
+    @ExceptionHandler(SomethingWentWrongException.class)
+    public ResponseEntity<String> somethingWentWrongException(SomethingWentWrongException ex) {
 
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
-	}
-	
-	
+        return new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
+    }
+
+    @ExceptionHandler(InvalidRequestException.class)
+    public ResponseEntity<String> handleInvalidRequestException(InvalidRequestException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
 
 }
