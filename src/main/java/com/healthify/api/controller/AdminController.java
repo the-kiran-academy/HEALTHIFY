@@ -49,6 +49,16 @@ public class AdminController {
 		}
 
 	}
+	
+	@GetMapping(value = "get-user-by-id/{id}", produces = "application/json")
+	public ResponseEntity<User> getUserById(@PathVariable String id) {
+		User user = userService.getUserById(id);
+		if (user != null) {
+			return new ResponseEntity<User>(user, HttpStatus.OK);
+		} else {
+			throw new ResourceNotFoundException("User Not Found For ID : " + id);
+		}
+	}
 
 	@DeleteMapping(value = "/delete-user/{id}", produces = "application/json")
 	public ResponseEntity<Boolean> deleteUser(@PathVariable String id) {

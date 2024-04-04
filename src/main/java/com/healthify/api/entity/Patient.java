@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -37,7 +38,7 @@ public class Patient {
 	private String emailId;
 
 	@Column(name = "age",nullable = false)
-	@NotBlank(message = "Age Is Required")
+	@NotNull(message = "Age Is Required")
 	private int age;
 
 	@Column(name = "blood_group")

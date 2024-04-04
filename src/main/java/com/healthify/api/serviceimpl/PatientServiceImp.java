@@ -21,8 +21,8 @@ public class PatientServiceImp implements PatientService {
 
 	@Override
 	public Patient addPatient(Patient patient) {
-		return null;
-
+		
+		return patientDao.addPatient(patient);
 	}
 
 	@Override

@@ -39,4 +39,6 @@ public interface UserDao {
 	public boolean saveOtp(Otp otp);
 
 	public Otp getOtpByUser(String userId);
+
+	
 }

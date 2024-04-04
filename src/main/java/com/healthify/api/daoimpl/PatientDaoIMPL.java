@@ -2,14 +2,18 @@ package com.healthify.api.daoimpl;
 import java.sql.Date;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.healthify.api.dao.PatientDao;
 import com.healthify.api.entity.Patient;
+import com.healthify.api.exception.ResourceAlreadyExistsException;
 
 /**
  * @author RAM
@@ -80,17 +84,30 @@ public class PatientDaoIMPL implements PatientDao {
 	}
 
 	@Override
+	@Transactional
 	public Patient addPatient(Patient patient) {
-
-		Session session = sf.getCurrentSession();
-		try {
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-		
+	    
+	    Session session=sf.getCurrentSession();	    
+	    Query<Long> countQuery = session.createQuery(
+	        "SELECT COUNT(p) FROM Patient p WHERE p.mobileNo = :mobileNo OR (p.firstName = :firstName AND p.lastName = :lastName)",
+	        Long.class
+	    );
+	    countQuery.setParameter("mobileNo", patient.getMobileNo());
+	    countQuery.setParameter("firstName", patient.getFirstName());
+	    countQuery.setParameter("lastName", patient.getLastName());
+	    
+	    Long count = countQuery.uniqueResult();
+	    
+	    if (count > 0) {
+	        throw new ResourceAlreadyExistsException("Patient with the same mobile number or name already exists");
+	    }
+	    
+	    // Save the patient
+	    session.save(patient);
+	    
+	    return patient;
 	}
+
 
 	@Override
 	public boolean deletePatientById(String id) {

@@ -39,6 +39,7 @@ public interface UserService {
 	
 	
 	public String generateReport();
+
 	
 
 }

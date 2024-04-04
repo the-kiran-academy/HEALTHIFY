@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.healthify.api.entity.Patient;
+import com.healthify.api.exception.ResourceAlreadyExistsException;
+import com.healthify.api.exception.ResourceNotFoundException;
 import com.healthify.api.service.PatientService;
 
 /**
@@ -34,11 +36,13 @@ public class PatientController {
 	@Autowired
 	private PatientService patientService;
 
-	@PostMapping(value = "/add-patient")
-	public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) 
-	{      
-		return null;
+	@PostMapping(value = "/add-patient", produces = "application/json")
+	public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) {
+	    Patient addedPatient = patientService.addPatient(patient);
+	    return new ResponseEntity<>(addedPatient, HttpStatus.CREATED);
 	}
+
+
 
 	@DeleteMapping(value = "/delete-patient-by-id/{id}")
 	public ResponseEntity<String> deletePatientById(@PathVariable String id) {
