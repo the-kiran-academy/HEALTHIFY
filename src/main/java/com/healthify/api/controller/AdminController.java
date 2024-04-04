@@ -146,8 +146,9 @@ public class AdminController {
 		if (!list.isEmpty()) {
 			return new ResponseEntity<List<User>>(list, HttpStatus.OK);
 		} else {
-			throw new ResourceNotFoundException("User Not Exists For Name : " + firstName);
+			throw new ResourceNotFoundException("User Not Exists For Name : " + firstName);	
 		}
+		
 	}
 
 	@GetMapping(value = "/user/report", produces = "application/json")
