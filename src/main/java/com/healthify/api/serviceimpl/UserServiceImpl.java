@@ -1,6 +1,11 @@
 package com.healthify.api.serviceimpl;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Formatter;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,8 +31,22 @@ public class UserServiceImpl implements UserService {
 	private String[] roles;
 
 	@Override
-	public boolean addUser(User user) {
-		return false;
+	public boolean addUser(User user) 
+	{
+        Calendar calendar = Calendar.getInstance();
+        java.util.Date utilDate = calendar.getTime();
+      
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = dateFormat.format(utilDate);
+        
+        user.setCreatedDate(Date.valueOf(formattedDate));
+        
+        String encodepass = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodepass);
+        
+        
+		boolean addedUser = dao.addUser(user);
+		return addedUser;
 
 	}
 
@@ -76,11 +95,7 @@ public class UserServiceImpl implements UserService {
 		return dao.getUsersTotalCounts(type);
 	}
 
-	@Override
-	public Long getUserCountByDateAndType(Date registereddate, String type) {
-		return dao.getUserCountByDateAndType(registereddate, type);
-	}
-
+	
 	@Override
 	public List<User> getUserByFirstName(String firstName) {
 		return dao.getUserByFirstName(firstName);
@@ -103,6 +118,12 @@ public class UserServiceImpl implements UserService {
 	public String generateReport() {
 		
 		return "generated";
+	}
+
+	@Override
+	public Long getUserCountByDateAndType(java.sql.Date registeredDate, String type) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
