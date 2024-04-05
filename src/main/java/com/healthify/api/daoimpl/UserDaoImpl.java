@@ -3,6 +3,10 @@ package com.healthify.api.daoimpl;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -132,13 +136,20 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public Long getUsersTotalCounts() {
+		Long count=0L;
+		CriteriaBuilder criteriaBuilder=sf.getCriteriaBuilder();
+		CriteriaQuery criteriaQuery=criteriaBuilder.createQuery(Long.class);
+		Root<User>root=criteriaQuery.from(User.class);
+		
+		criteriaQuery.select(criteriaBuilder.count(root));
 		Session session = sf.getCurrentSession();
+		count=(Long) session.createQuery(criteriaQuery).uniqueResult();
 		try {
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return count;
 	}
 
 	@Override
