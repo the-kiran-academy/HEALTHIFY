@@ -76,10 +76,10 @@ public class PatientController {
 	}
 
 	@GetMapping(value = "/count-by-registerdate",produces = "application/json")
-	public ResponseEntity<Long> getPatientsCountByDate(@RequestParam Date registeredDate)
-	{
+	public ResponseEntity<Long> getPatientsCountByDate(@RequestParam Date registeredDate){
+		
 		Long Count = patientService.getPatientsCountByDate(registeredDate);
-        return new ResponseEntity<>(Count, HttpStatus.OK);
+        return new ResponseEntity<Long>(Count, HttpStatus.OK);
     }
 
 

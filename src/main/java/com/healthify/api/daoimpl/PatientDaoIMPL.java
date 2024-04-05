@@ -4,12 +4,15 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.healthify.api.dao.PatientDao;
 import com.healthify.api.entity.Patient;
+import com.healthify.api.exception.ResourceNotFoundException;
 
 /**
  * @author RAM
@@ -48,26 +51,27 @@ public class PatientDaoIMPL implements PatientDao {
 		}
 		return null;
 	}
-
-	@Override
-	public Long getPatientsCountByDate(Date registeredDate) {
-
-		Session session = sf.getCurrentSession();
-		try 
-		{
-			Query<Long> query = session.createQuery("SELECT COUNT(*) FROM Patient WHERE registerDate = :registerDate", Long.class);
-			query.setParameter("registerDate", registeredDate);
-			Long Count = query.uniqueResult();
-			return Count;
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-			
-		}
-		 return 0l;
-	}
-
+	
+	 @Override
+	    public Long getPatientsCountByDate(Date registerDate) {
+	        Session session =sf.getCurrentSession();
+	        try {
+	            org.hibernate.Criteria criteria = session.createCriteria(Patient.class);
+	            criteria.add(Restrictions.eq("registerDate", registerDate));
+	            criteria.setProjection(Projections.rowCount());     //to retrieve the count of results.
+	            Long count=(Long) criteria.uniqueResult();          //to get the count of patients.
+	            
+	            if (count == null) {
+	                throw new ResourceNotFoundException("No patients found registered on: " + registerDate);
+	            }
+	            
+	            return count;
+	        } catch (Exception e) {
+	            throw new RuntimeException("Error while retrieving patients count by date", e);
+	        }
+	    }
+	
+	 
 	@Override
 	public List<Patient> getTop5PatientAddedByDate() {
 		Session session = sf.getCurrentSession();
