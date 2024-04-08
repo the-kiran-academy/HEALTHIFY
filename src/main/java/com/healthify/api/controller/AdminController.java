@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.google.common.util.concurrent.Service;
 import com.healthify.api.aop.TrackExecutionTime;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
@@ -142,12 +144,8 @@ public class AdminController {
 
 	@GetMapping(value = "/get-user-by-firtname/{firstName}", produces = "application/json")
 	public ResponseEntity<List<User>> getUserByFirstName(@PathVariable String firstName) {
-		List<User> list = userService.getUserByFirstName(firstName);
-		if (!list.isEmpty()) {
-			return new ResponseEntity<List<User>>(list, HttpStatus.OK);
-		} else {
-			throw new ResourceNotFoundException("User Not Exists For Name : " + firstName);
-		}
+		
+		return new ResponseEntity<List<User>>(userService.getUserByFirstName(firstName), HttpStatus.FOUND);
 	}
 
 	@GetMapping(value = "/user/report", produces = "application/json")

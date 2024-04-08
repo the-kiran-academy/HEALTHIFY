@@ -3,6 +3,10 @@ package com.healthify.api.daoimpl;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -15,6 +19,8 @@ import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Otp;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.ResourceNotFoundException;
+import com.healthify.api.exception.SomethingWentWrongException;
 import com.healthify.api.security.CustomUserDetail;
 
 @Repository
@@ -77,19 +83,19 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean deleteUserById(String id){
+	public boolean deleteUserById(String id) {
 		Session session = sf.getCurrentSession();
-		
+
 		try {
-	        User user = session.get(User.class, id);
-	        
-	        if (user != null) {
-	            session.delete(user);
-	            return true;
-	        } else {
-	            return false;
-	        }
-	    } catch (Exception e) {
+			User user = session.get(User.class, id);
+
+			if (user != null) {
+				session.delete(user);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -166,12 +172,31 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<User> getUserByFirstName(String firstName) {
 		Session session = sf.getCurrentSession();
+		List<User> list = null;
 		try {
+
+			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+			CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
+			Root<User> root = criteriaQuery.from(User.class);
+			criteriaQuery.select(root);
+			criteriaQuery.where(criteriaBuilder.equal(root.get("firstname"), firstName));
+
+			list = session.createQuery(criteriaQuery).list();
+
+			if (!list.isEmpty()) {
+				return list;
+			} else {
+				throw new ResourceNotFoundException("User not found with given name : " + firstName);
+			}
+
+		} catch (ResourceNotFoundException e) {
+
+			throw new ResourceNotFoundException("User not found with given name : " + firstName);
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new SomethingWentWrongException("Something went wrong while performing opration");
 		}
-		return null;
 	}
 
 	@Override
