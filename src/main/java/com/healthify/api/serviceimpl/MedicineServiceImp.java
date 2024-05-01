@@ -37,66 +37,74 @@ public class MedicineServiceImp implements MedicineService {
 
 	@Override
 	public boolean deleteMedicineById(String id) {
-		return medicineDao.deleteMedicineById(id);
+		return false;
+		
 	}
 
 	@Override
 	public Medicine getMedicineById(String id) {
-		Medicine medicine = medicineDao.getMedicineById(id);
-
-		return medicine;
+		return null;
+		
 	}
 
 	@Override
 	public Medicine updateMedicine(Medicine medicine) {
-		return medicineDao.updateMedicine(medicine);
+		return medicine;
+		
 	}
 
 	@Override
 	public List<Medicine> getAllMedicine() {
-		return medicineDao.getAllMedicine();
+		return null;
+		
 	}
 
 	@Override
 	public List<Medicine> getMedicinesByName(String medicineName) {
-		return medicineDao.findByNameContainingIgnoreCase(medicineName);
+		return null;
+		
 	}
 
 	@Override
 	public Medicine getMedicineByName(String medicineName) {
-		return medicineDao.findByName(medicineName);
+		return null;
+		
 	}
 
 	@Override
 	public List<Medicine> getMedicinesWithQuantityMoreThanZero(int quantity) {
-		return medicineDao.findByQuantityGreaterThan(quantity);
+		return null;
+		
 	}
 
 	@Override
 	public Long getCountOfMedicineByDateAdded(String dateAdded) {
-		return medicineDao.countByDateAdded(dateAdded);
+		return null;
+		
 	}
 
 	@Override
 	public Long getMedicinesTotalCount() {
-		return medicineDao.getTotalCount();
+		return null;
+		
 	}
 
 	@Override
 	public List<Medicine> getTop5MedicineAddedByDate(String date) {
-		return medicineDao.findTop5ByIdDesc(date);
+		return null;
+		
 	}
 
 	public List<Medicine> readExcel(String filePath) {
-		List<Medicine> list=new ArrayList<>();
-		return list;
+		return null;
+		
 
 	}
 
 	@Override
 	public Map<String, Object> uploadSheet(MultipartFile myFile) {
-		
 		return map;
+		
 	}
 
 }

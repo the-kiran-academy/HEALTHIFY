@@ -22,9 +22,6 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao dao;
 
-	@Value("${user.roles}")
-	private String[] roles;
-
 	@Override
 	public boolean addUser(User user) {
 		return false;
@@ -44,13 +41,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean deleteUserById(String id) {
-		return dao.deleteUserById(id);
+		return false;
+		
 	}
 
 	@Override
 	public User getUserById(String id) {
-		User user = dao.getUserById(id);
-		return user;
+		return null;
+		
 	}
 
 	@Override
@@ -68,22 +66,26 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Long getUsersTotalCounts() {
-		return dao.getUsersTotalCounts();
+		return null;
+		
 	}
 
 	@Override
 	public Long getUsersTotalCounts(String type) {
-		return dao.getUsersTotalCounts(type);
+		return null;
+		
 	}
 
 	@Override
 	public Long getUserCountByDateAndType(Date registereddate, String type) {
-		return dao.getUserCountByDateAndType(registereddate, type);
+		return null;
+		
 	}
 
 	@Override
 	public List<User> getUserByFirstName(String firstName) {
-		return dao.getUserByFirstName(firstName);
+		return null;
+		
 	}
 
 	@Override
@@ -95,14 +97,15 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Role getRoleById(int roleId) {
+		return null;
 
-		return dao.getRoleById(roleId);
+		
 	}
 
 	@Override
 	public String generateReport() {
+		return null;
 		
-		return "generated";
 	}
 
 }

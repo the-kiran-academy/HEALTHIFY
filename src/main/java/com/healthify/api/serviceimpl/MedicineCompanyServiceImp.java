@@ -26,44 +26,51 @@ public class MedicineCompanyServiceImp implements MedicineCompanyService {
 
 	@Override
 	public boolean deleteMedicineCompanyById(String id) {
-		return medicineCompanyDao.deleteMedicineCompanyById(id);
+		return false;
+		
 	}
 
 	@Override
 	public MedicineCompany getMedicineCompanyById(String id) {
-		MedicineCompany medicineCompany = medicineCompanyDao.getMedicineCompanyById(id);
-
-		return medicineCompany;
+		return null;
+		
 	}
 
 	@Override
 	public MedicineCompany updateMedicineCompany(MedicineCompany medicineCompany) {
-		return medicineCompanyDao.updateMedicineCompany(medicineCompany);
+		return null;
+		
+		
 	}
 
 	@Override
 	public List<MedicineCompany> getAllMedicineCompanys() {
-		return medicineCompanyDao.getAllMedicineCompanys();
+		return null;
+		
 	}
 
 	@Override
 	public List<MedicineCompany> getCompanysByName(String companyName) {
-		return medicineCompanyDao.findByNameContainingIgnoreCase(companyName);
+		return null;
+		
 	}
 
 	@Override
 	public MedicineCompany getCompanyByName(String companyName) {
-		return medicineCompanyDao.findByName(companyName);
+		return null;
+		
 	}
 
 	@Override
 	public Long getCountByRegisteredDate(String registeredDate) {
-		return medicineCompanyDao.countByRegisterdate(registeredDate);
+		return null;
+		
 	}
 
 	@Override
 	public List<MedicineCompany> getTop5CompanyAddedByDate(String registeredDate) {
-		return medicineCompanyDao.findTop5ByIdDesc(registeredDate);
+		return null;
+		
 	}
 
 }

@@ -39,10 +39,6 @@ public class AppointmentServiceImp implements AppointmentService {
 		
 	}
 
-	private static boolean isOverlap(LocalTime start1, LocalTime end1, LocalTime start2, LocalTime end2) {
-		return start1.isBefore(end2) && end1.isAfter(start2);
-	}
-
 	@Override
 	public Appointment updateAppointment(Appointment appointment) {
 		
@@ -51,8 +47,7 @@ public class AppointmentServiceImp implements AppointmentService {
 
 	@Override
 	public Appointment getAppointmentById(String appointmentId) {
-		Appointment appointment = appointmentDao.getAppointmentById(appointmentId);
-		return appointment;
+		return null;
 	}
 
 	@Override
@@ -76,8 +71,7 @@ public class AppointmentServiceImp implements AppointmentService {
 
 	@Override
 	public List<Appointment> getAppointmentsByDate(Date date) {
-		List<Appointment> appointmentsByDate = appointmentDao.getAppointmentsByDate(date);
-		return appointmentsByDate;
+		return null;
 	}
 
 	@Override
@@ -88,8 +82,7 @@ public class AppointmentServiceImp implements AppointmentService {
 
 	@Override
 	public List<Appointment> getAppointmentsByBillingDate(Date billingDate) {
-		List<Appointment> appointmentsByBillingDate = appointmentDao.getAppointmentsByBillingDate(billingDate);
-		return appointmentsByBillingDate;
+		return null;
 	}
 
 	@Override
@@ -100,8 +93,7 @@ public class AppointmentServiceImp implements AppointmentService {
 
 	@Override
 	public Long getCountByAppointmentTakenDate(Date appointmentTakenDate) {
-		Long count = appointmentDao.getCountByAppointmentTakenDate(appointmentTakenDate);
-		return count;
+		return 0l;
 	}
 
 	@Override

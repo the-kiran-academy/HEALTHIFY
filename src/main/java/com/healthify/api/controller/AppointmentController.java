@@ -78,7 +78,6 @@ public class AppointmentController {
 
 	@GetMapping(value = "/get-count-by-appointment-date", produces = "application/json")
 	public ResponseEntity<Long> getCountByAppointmentDate(@RequestParam Date date) {
-		Long count = service.getCountByAppointmentDate(date);
 		return null;
 	}
 

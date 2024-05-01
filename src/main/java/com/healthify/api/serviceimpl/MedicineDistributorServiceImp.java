@@ -26,43 +26,49 @@ public class MedicineDistributorServiceImp implements MedicineDistributorService
 
 	@Override
 	public boolean deleteMedicineDistributorById(String id) {
-		return medicineDistributorDao.deleteMedicineDistributorById(id);
+		return false;
+		
 	}
 
 	@Override
 	public MedicineDistributor getMedicineDistributorById(String id) {
-		MedicineDistributor medicineDistributor = medicineDistributorDao.getMedicineDistributorById(id);
-		return medicineDistributor;
+		return null;
+		
 	}
 
 	@Override
 	public MedicineDistributor updateMedicineDistributor(MedicineDistributor medicineDistributor) {
-		return medicineDistributorDao.updateMedicineDistributor(medicineDistributor);
+		return medicineDistributor;
 	}
 
 	@Override
 	public List<MedicineDistributor> getAllDistributors() {
-		return medicineDistributorDao.getAllDistributors();
+		return null;
+		
 	}
 
 	@Override
 	public List<MedicineDistributor> getDistributorsByName(String distributorName) {
-		return medicineDistributorDao.getDistributorsByName(distributorName);
+		return null;
+		
 	}
 
 	@Override
 	public MedicineDistributor getDistributorByName(String distributorName) {
-		return medicineDistributorDao.getDistributorByName(distributorName);
+		return null;
+		
 	}
 
 	@Override
 	public Long getCountByRegisteredDate(String registeredDate) {
-		return medicineDistributorDao.getCountByRegisteredDate(registeredDate);
+		return null;
+		
 	}
 
 	@Override
 	public List<MedicineDistributor> getTop5CompanyAddedByDate(String date) {
-		return medicineDistributorDao.getTop5CompanyAddedByDate(date);
+		return null;
+		
 	}
 
 }
