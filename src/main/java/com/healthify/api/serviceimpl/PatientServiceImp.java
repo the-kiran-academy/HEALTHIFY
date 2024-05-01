@@ -27,48 +27,56 @@ public class PatientServiceImp implements PatientService {
 
 	@Override
 	public boolean deletePatientById(String id) {
-		return patientDao.deletePatientById(id);
+		return false;
+		
 	}
 
 	@Override
 	public Patient getPatientById(String id) {
-		Patient patient = patientDao.getPatientById(id);
-		return patient;
+		return null;
+		
 	}
 
 	@Override
 	public Patient updatePatient(Patient patient) {
-		return patientDao.updatePatient(patient);
+		return patient;
+		
 	}
 
 	@Override
 	public List<Patient> findByFirstnameContainingIgnoreCase(String patientname) {
-		return patientDao.findByFirstnameContainingIgnoreCase(patientname);
+		return null;
+		
 	}
 
 	@Override
 	public List<Patient> getAllPatients() {
-		return patientDao.getAllPatients();
+		return null;
+		
 	}
 
 	@Override
 	public Long getPatientsCount() {
-		return patientDao.getPatientsCount();
+		return null;
+		
 	}
 
 	@Override
 	public Long getPatientsCountByDate(Date registerDate) {
-		return patientDao.getPatientsCountByDate(registerDate);
+		return null;
+		
 	}
 
 	@Override
 	public List<Patient> getTop5PatientAddedByDate() {
-		return patientDao.getTop5PatientAddedByDate();
+		return null;
+		
 	}
 
 	@Override
 	public List<String> getAllPatientsIds() {
-		return patientDao.getAllPatientsIds();
+		return null;
+		
 	}
 
 }

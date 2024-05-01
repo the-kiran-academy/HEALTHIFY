@@ -27,13 +27,14 @@ public class DoctorServiceImpl implements DoctorService {
 	
 	@Override
 	public List<DoctorsTimeOff> getDoctorTimeOff(String doctorUsername, Date date) {
-		return dao.getDoctorTimeOff(doctorUsername, date);
+		return null;
+		
 	}
 
 	@Override
 	public List<DoctorsTimeOff> getDoctorTimeOff(String doctorUsername) {
+		return null;
 		
-		return dao.getDoctorTimeOff(doctorUsername);
 	}
 
 	
