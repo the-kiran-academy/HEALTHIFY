@@ -16,6 +16,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
@@ -144,7 +145,14 @@ public class UserDaoImpl implements UserDao {
 				newUpdateUser.setFirstname(user.getFirstname());
 				newUpdateUser.setLastname(user.getLastname());
 				newUpdateUser.setEmailid(user.getEmailid());
-				newUpdateUser.setPassword(user.getPassword());
+				
+				 if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+					 System.out.println(1);
+		                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		                String encryptedPassword = passwordEncoder.encode(user.getPassword());
+		                System.out.println("hi"+encryptedPassword);
+		                newUpdateUser.setPassword(encryptedPassword);
+		            }
 				newUpdateUser.setMobileno(user.getMobileno());
 				newUpdateUser.setStreet(user.getStreet());
 				newUpdateUser.setCity(user.getCity());

@@ -5000,3 +5000,466 @@ java.lang.ClassCastException: class java.io.ObjectStreamClass cannot be cast to 
 2024-05-08 15:54:12 [http-nio-8091-exec-5] INFO  c.h.api.controller.AuthController - in Login User = ram
 2024-05-08 15:54:12 [http-nio-8091-exec-5] INFO  c.h.a.aop.ExecutionTimeTrackerAdvice - Method Name = ResponseEntity com.healthify.api.controller.AuthController.loginAdmin(User,HttpServletResponse)time taken to execute 88 ms
 2024-05-08 15:56:09 [RMI TCP Connection(15)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2024-05-08 17:11:22 [restartedMain] INFO  c.healthify.api.HealthifyApplication - Starting HealthifyApplication using Java 17.0.10 on LAPTOP-E3NOQKCE with PID 20688 (D:\Advance Ojt 711&713\HEALTHIFY\target\classes started by Vaibhav in D:\Advance Ojt 711&713\HEALTHIFY)
+2024-05-08 17:11:22 [restartedMain] INFO  c.healthify.api.HealthifyApplication - The following profiles are active: dev
+2024-05-08 17:11:22 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-05-08 17:11:22 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-05-08 17:11:24 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-08 17:11:24 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 0 JPA repository interfaces.
+2024-05-08 17:11:25 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8091 (http)
+2024-05-08 17:11:25 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-05-08 17:11:25 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.48]
+2024-05-08 17:11:26 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-05-08 17:11:26 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3798 ms
+2024-05-08 17:11:26 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.32.Final
+2024-05-08 17:11:29 [restartedMain] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-05-08 17:11:29 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2024-05-08 17:11:31 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-08 17:11:31 [restartedMain] WARN  o.a.c.c.C.[Tomcat].[localhost].[/] - Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [041CFC087ED4EFDC20A8DD5E75F7F9E9]
+2024-05-08 17:11:31 [restartedMain] ERROR o.a.catalina.session.StandardManager - Exception loading sessions from persistent storage
+java.io.StreamCorruptedException: invalid type code: 00
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1764)
+	at java.base/java.io.ObjectInputStream$FieldValues.<init>(ObjectInputStream.java:2606)
+	at java.base/java.io.ObjectInputStream.defaultReadObject(ObjectInputStream.java:647)
+	at java.base/java.lang.Throwable.readObject(Throwable.java:912)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.io.ObjectStreamClass.invokeReadObject(ObjectStreamClass.java:1100)
+	at java.base/java.io.ObjectInputStream.readSerialData(ObjectInputStream.java:2423)
+	at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2257)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1733)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:509)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:467)
+	at org.apache.catalina.session.StandardSession.doReadObject(StandardSession.java:1565)
+	at org.apache.catalina.session.StandardSession.readObjectData(StandardSession.java:1050)
+	at org.apache.catalina.session.StandardManager.doLoad(StandardManager.java:219)
+	at org.apache.catalina.session.StandardManager.load(StandardManager.java:162)
+	at org.apache.catalina.session.StandardManager.startInternal(StandardManager.java:356)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5247)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1398)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1388)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:921)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1398)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1388)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:921)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:437)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:934)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:450)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:199)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:182)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:160)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:577)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
+	at com.healthify.api.HealthifyApplication.main(HealthifyApplication.java:14)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+2024-05-08 17:11:31 [restartedMain] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.healthify.api.utility.MessageUtility.ACCOUNT_SID
+2024-05-08 17:11:31 [restartedMain] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.healthify.api.utility.MessageUtility.AUTH_TOKEN
+2024-05-08 17:11:32 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 15 endpoint(s) beneath base path '/actuator'
+2024-05-08 17:11:32 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/v2/api-docs'] with []
+2024-05-08 17:11:32 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/configuration/ui'] with []
+2024-05-08 17:11:32 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/swagger-resources/**'] with []
+2024-05-08 17:11:32 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/configuration/security'] with []
+2024-05-08 17:11:32 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/webjars/**'] with []
+2024-05-08 17:11:32 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@700f4e1d, org.springframework.security.web.context.SecurityContextPersistenceFilter@d0fc20f, org.springframework.security.web.header.HeaderWriterFilter@26c8f9e5, org.springframework.security.web.authentication.logout.LogoutFilter@559f7cda, com.healthify.api.config.JwtAuthenticationFilter@77fbf487, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@776a8673, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1655f444, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6c2b01aa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3952a217, org.springframework.security.web.session.SessionManagementFilter@4ff268f0, org.springframework.security.web.access.ExceptionTranslationFilter@6441e3cd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@26699226]
+2024-05-08 17:11:32 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2024-05-08 17:11:32 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2024-05-08 17:11:32 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-08 17:11:33 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8091 (http) with context path ''
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAppointmentsByDoctorIdAndAppointmentDateUsingGET_1
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_1
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_2
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingDELETE_1
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_3
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_4
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_5
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_6
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_7
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_8
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_9
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_10
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_11
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_12
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_13
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_14
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_15
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_16
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_17
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_18
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_19
+2024-05-08 17:11:33 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_20
+2024-05-08 17:11:33 [restartedMain] INFO  c.healthify.api.HealthifyApplication - Started HealthifyApplication in 12.114 seconds (JVM running for 13.34)
+2024-05-08 17:11:43 [http-nio-8091-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-08 17:11:43 [http-nio-8091-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-05-08 17:11:43 [http-nio-8091-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-05-08 17:11:43 [http-nio-8091-exec-1] INFO  c.h.api.controller.AuthController - in Login User = ram
+2024-05-08 17:11:44 [http-nio-8091-exec-1] INFO  c.h.a.aop.ExecutionTimeTrackerAdvice - Method Name = ResponseEntity com.healthify.api.controller.AuthController.loginAdmin(User,HttpServletResponse)time taken to execute 669 ms
+2024-05-08 17:11:50 [http-nio-8091-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+2024-05-08 17:11:50 [http-nio-8091-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'Password' cannot be null
+2024-05-08 17:12:40 [restartedMain] INFO  c.healthify.api.HealthifyApplication - Starting HealthifyApplication using Java 17.0.10 on LAPTOP-E3NOQKCE with PID 20688 (D:\Advance Ojt 711&713\HEALTHIFY\target\classes started by Vaibhav in D:\Advance Ojt 711&713\HEALTHIFY)
+2024-05-08 17:12:40 [restartedMain] INFO  c.healthify.api.HealthifyApplication - The following profiles are active: dev
+2024-05-08 17:12:41 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-08 17:12:41 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22 ms. Found 0 JPA repository interfaces.
+2024-05-08 17:12:41 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8091 (http)
+2024-05-08 17:12:41 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-05-08 17:12:41 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.48]
+2024-05-08 17:12:41 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-05-08 17:12:41 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 841 ms
+2024-05-08 17:12:44 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2024-05-08 17:12:44 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-08 17:12:44 [restartedMain] WARN  o.a.c.c.C.[Tomcat].[localhost].[/] - Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [D3B9C55F524317278069953DEE80987F]
+2024-05-08 17:12:44 [restartedMain] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.healthify.api.utility.MessageUtility.ACCOUNT_SID
+2024-05-08 17:12:44 [restartedMain] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.healthify.api.utility.MessageUtility.AUTH_TOKEN
+2024-05-08 17:12:45 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 15 endpoint(s) beneath base path '/actuator'
+2024-05-08 17:12:45 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/v2/api-docs'] with []
+2024-05-08 17:12:45 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/configuration/ui'] with []
+2024-05-08 17:12:45 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/swagger-resources/**'] with []
+2024-05-08 17:12:45 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/configuration/security'] with []
+2024-05-08 17:12:45 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/webjars/**'] with []
+2024-05-08 17:12:45 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@38492364, org.springframework.security.web.context.SecurityContextPersistenceFilter@5dcd9511, org.springframework.security.web.header.HeaderWriterFilter@56c92bc8, org.springframework.security.web.authentication.logout.LogoutFilter@279e47ca, com.healthify.api.config.JwtAuthenticationFilter@5af0af, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5448109e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4ccc352, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1b443f68, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@610029a8, org.springframework.security.web.session.SessionManagementFilter@36577a9d, org.springframework.security.web.access.ExceptionTranslationFilter@46b3ed6f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4b3ebc69]
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2024-05-08 17:12:45 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2024-05-08 17:12:45 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-08 17:12:45 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8091 (http) with context path ''
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAppointmentsByDoctorIdAndAppointmentDateUsingGET_1
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_1
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_2
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingDELETE_1
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_3
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_4
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_5
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_6
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_7
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_8
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_9
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_10
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_11
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_12
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_13
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_14
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_15
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_16
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_17
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_18
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_19
+2024-05-08 17:12:45 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_20
+2024-05-08 17:12:45 [restartedMain] INFO  c.healthify.api.HealthifyApplication - Started HealthifyApplication in 4.697 seconds (JVM running for 85.317)
+2024-05-08 17:12:45 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2024-05-08 17:12:45 [http-nio-8091-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-08 17:12:45 [http-nio-8091-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-05-08 17:12:45 [http-nio-8091-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2024-05-08 17:12:50 [http-nio-8091-exec-4] INFO  c.h.api.controller.AuthController - in Login User = ram
+2024-05-08 17:12:51 [http-nio-8091-exec-4] INFO  c.h.a.aop.ExecutionTimeTrackerAdvice - Method Name = ResponseEntity com.healthify.api.controller.AuthController.loginAdmin(User,HttpServletResponse)time taken to execute 257 ms
+2024-05-08 17:15:35 [restartedMain] INFO  c.healthify.api.HealthifyApplication - Starting HealthifyApplication using Java 17.0.10 on LAPTOP-E3NOQKCE with PID 20688 (D:\Advance Ojt 711&713\HEALTHIFY\target\classes started by Vaibhav in D:\Advance Ojt 711&713\HEALTHIFY)
+2024-05-08 17:15:35 [restartedMain] INFO  c.healthify.api.HealthifyApplication - The following profiles are active: dev
+2024-05-08 17:15:35 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-08 17:15:35 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 JPA repository interfaces.
+2024-05-08 17:15:36 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8091 (http)
+2024-05-08 17:15:36 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-05-08 17:15:36 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.48]
+2024-05-08 17:15:36 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-05-08 17:15:36 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 615 ms
+2024-05-08 17:15:38 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2024-05-08 17:15:38 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-08 17:15:38 [restartedMain] WARN  o.a.c.c.C.[Tomcat].[localhost].[/] - Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [D3B9C55F524317278069953DEE80987F]
+2024-05-08 17:15:38 [restartedMain] ERROR o.a.catalina.session.StandardManager - Exception loading sessions from persistent storage
+java.lang.ClassCastException: class java.io.ObjectStreamClass cannot be cast to class java.lang.String (java.io.ObjectStreamClass and java.lang.String are in module java.base of loader 'bootstrap')
+	at java.base/java.io.ObjectInputStream.readTypeString(ObjectInputStream.java:1810) ~[na:na]
+	at java.base/java.io.ObjectStreamClass.readNonProxy(ObjectStreamClass.java:708) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readClassDescriptor(ObjectInputStream.java:983) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readNonProxyDesc(ObjectInputStream.java:2023) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readClassDesc(ObjectInputStream.java:1898) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2224) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1733) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:509) ~[na:na]
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:467) ~[na:na]
+	at org.apache.catalina.session.StandardSession.doReadObject(StandardSession.java:1609) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.session.StandardSession.readObjectData(StandardSession.java:1050) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.session.StandardManager.doLoad(StandardManager.java:219) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.session.StandardManager.load(StandardManager.java:162) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.session.StandardManager.startInternal(StandardManager.java:356) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5247) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1398) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1388) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:921) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1398) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1388) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:921) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:437) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:934) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123) ~[spring-boot-2.5.2.jar:2.5.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104) ~[spring-boot-2.5.2.jar:2.5.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:450) ~[spring-boot-2.5.2.jar:2.5.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:199) ~[spring-boot-2.5.2.jar:2.5.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:182) ~[spring-boot-2.5.2.jar:2.5.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:160) ~[spring-boot-2.5.2.jar:2.5.2]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:577) ~[spring-context-5.3.8.jar:5.3.8]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145) ~[spring-boot-2.5.2.jar:2.5.2]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-2.5.2.jar:2.5.2]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434) ~[spring-boot-2.5.2.jar:2.5.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338) ~[spring-boot-2.5.2.jar:2.5.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-2.5.2.jar:2.5.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332) ~[spring-boot-2.5.2.jar:2.5.2]
+	at com.healthify.api.HealthifyApplication.main(HealthifyApplication.java:14) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.5.2.jar:2.5.2]
+2024-05-08 17:15:38 [restartedMain] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.healthify.api.utility.MessageUtility.ACCOUNT_SID
+2024-05-08 17:15:38 [restartedMain] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.healthify.api.utility.MessageUtility.AUTH_TOKEN
+2024-05-08 17:15:39 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 15 endpoint(s) beneath base path '/actuator'
+2024-05-08 17:15:39 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/v2/api-docs'] with []
+2024-05-08 17:15:39 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/configuration/ui'] with []
+2024-05-08 17:15:39 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/swagger-resources/**'] with []
+2024-05-08 17:15:39 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/configuration/security'] with []
+2024-05-08 17:15:39 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/webjars/**'] with []
+2024-05-08 17:15:39 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1f63e02, org.springframework.security.web.context.SecurityContextPersistenceFilter@595a57cb, org.springframework.security.web.header.HeaderWriterFilter@1b8721f9, org.springframework.security.web.authentication.logout.LogoutFilter@5bec2dd8, com.healthify.api.config.JwtAuthenticationFilter@38c9511a, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@34645080, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@67be7fcd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4594122a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@44f6e4af, org.springframework.security.web.session.SessionManagementFilter@1320c440, org.springframework.security.web.access.ExceptionTranslationFilter@3c104944, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@74715744]
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2024-05-08 17:15:39 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2024-05-08 17:15:39 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-08 17:15:39 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8091 (http) with context path ''
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAppointmentsByDoctorIdAndAppointmentDateUsingGET_1
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_1
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_2
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingDELETE_1
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_3
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_4
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_5
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_6
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_7
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_8
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_9
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_10
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_11
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_12
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_13
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_14
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_15
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_16
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_17
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_18
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_19
+2024-05-08 17:15:39 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_20
+2024-05-08 17:15:39 [restartedMain] INFO  c.healthify.api.HealthifyApplication - Started HealthifyApplication in 4.092 seconds (JVM running for 259.233)
+2024-05-08 17:15:39 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2024-05-08 17:15:47 [http-nio-8091-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-08 17:15:47 [http-nio-8091-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-05-08 17:15:47 [http-nio-8091-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2024-05-08 17:15:47 [http-nio-8091-exec-1] INFO  c.h.api.controller.AuthController - in Login User = ram
+2024-05-08 17:15:47 [http-nio-8091-exec-1] INFO  c.h.a.aop.ExecutionTimeTrackerAdvice - Method Name = ResponseEntity com.healthify.api.controller.AuthController.loginAdmin(User,HttpServletResponse)time taken to execute 298 ms
+2024-05-08 17:15:51 [http-nio-8091-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+2024-05-08 17:15:51 [http-nio-8091-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'Password' cannot be null
+2024-05-08 17:17:33 [restartedMain] INFO  c.healthify.api.HealthifyApplication - Starting HealthifyApplication using Java 17.0.10 on LAPTOP-E3NOQKCE with PID 20688 (D:\Advance Ojt 711&713\HEALTHIFY\target\classes started by Vaibhav in D:\Advance Ojt 711&713\HEALTHIFY)
+2024-05-08 17:17:33 [restartedMain] INFO  c.healthify.api.HealthifyApplication - The following profiles are active: dev
+2024-05-08 17:17:33 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-08 17:17:33 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 JPA repository interfaces.
+2024-05-08 17:17:33 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8091 (http)
+2024-05-08 17:17:33 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-05-08 17:17:33 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.48]
+2024-05-08 17:17:33 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-05-08 17:17:33 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 625 ms
+2024-05-08 17:17:36 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2024-05-08 17:17:36 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-08 17:17:36 [restartedMain] WARN  o.a.c.c.C.[Tomcat].[localhost].[/] - Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [DD61EF9DA4D8774A9DFFF54B27D9F35E]
+2024-05-08 17:17:36 [restartedMain] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.healthify.api.utility.MessageUtility.ACCOUNT_SID
+2024-05-08 17:17:36 [restartedMain] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.healthify.api.utility.MessageUtility.AUTH_TOKEN
+2024-05-08 17:17:36 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 15 endpoint(s) beneath base path '/actuator'
+2024-05-08 17:17:36 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/v2/api-docs'] with []
+2024-05-08 17:17:36 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/configuration/ui'] with []
+2024-05-08 17:17:36 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/swagger-resources/**'] with []
+2024-05-08 17:17:36 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/configuration/security'] with []
+2024-05-08 17:17:36 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/webjars/**'] with []
+2024-05-08 17:17:36 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@842c36f, org.springframework.security.web.context.SecurityContextPersistenceFilter@e27711c, org.springframework.security.web.header.HeaderWriterFilter@10cba2ab, org.springframework.security.web.authentication.logout.LogoutFilter@18e15586, com.healthify.api.config.JwtAuthenticationFilter@674d88fd, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1858f8ce, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5d3f5c17, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@102c63e1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@460a33f, org.springframework.security.web.session.SessionManagementFilter@7874db5, org.springframework.security.web.access.ExceptionTranslationFilter@66f6b7b8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@78d2eabd]
+2024-05-08 17:17:36 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2024-05-08 17:17:36 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2024-05-08 17:17:36 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-08 17:17:36 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8091 (http) with context path ''
+2024-05-08 17:17:36 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+2024-05-08 17:17:36 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2024-05-08 17:17:36 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAppointmentsByDoctorIdAndAppointmentDateUsingGET_1
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_1
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_2
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingDELETE_1
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_3
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_4
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_5
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_6
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_7
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_8
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_9
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_10
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_11
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_12
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_13
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_14
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_15
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_16
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_17
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_18
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_19
+2024-05-08 17:17:37 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_20
+2024-05-08 17:17:37 [restartedMain] INFO  c.healthify.api.HealthifyApplication - Started HealthifyApplication in 3.984 seconds (JVM running for 376.833)
+2024-05-08 17:17:37 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2024-05-08 17:17:38 [restartedMain] INFO  c.healthify.api.HealthifyApplication - Starting HealthifyApplication using Java 17.0.10 on LAPTOP-E3NOQKCE with PID 20688 (D:\Advance Ojt 711&713\HEALTHIFY\target\classes started by Vaibhav in D:\Advance Ojt 711&713\HEALTHIFY)
+2024-05-08 17:17:38 [restartedMain] INFO  c.healthify.api.HealthifyApplication - The following profiles are active: dev
+2024-05-08 17:17:38 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-08 17:17:38 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 JPA repository interfaces.
+2024-05-08 17:17:38 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8091 (http)
+2024-05-08 17:17:38 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-05-08 17:17:38 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.48]
+2024-05-08 17:17:39 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-05-08 17:17:39 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 578 ms
+2024-05-08 17:17:41 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2024-05-08 17:17:41 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-08 17:17:41 [restartedMain] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.healthify.api.utility.MessageUtility.ACCOUNT_SID
+2024-05-08 17:17:41 [restartedMain] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.healthify.api.utility.MessageUtility.AUTH_TOKEN
+2024-05-08 17:17:41 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 15 endpoint(s) beneath base path '/actuator'
+2024-05-08 17:17:41 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/v2/api-docs'] with []
+2024-05-08 17:17:41 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/configuration/ui'] with []
+2024-05-08 17:17:41 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/swagger-resources/**'] with []
+2024-05-08 17:17:41 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/configuration/security'] with []
+2024-05-08 17:17:41 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/webjars/**'] with []
+2024-05-08 17:17:41 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@11d2808, org.springframework.security.web.context.SecurityContextPersistenceFilter@48e7b7ed, org.springframework.security.web.header.HeaderWriterFilter@638d8b81, org.springframework.security.web.authentication.logout.LogoutFilter@2cf7ffac, com.healthify.api.config.JwtAuthenticationFilter@788bb806, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3da7cb00, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3b74a82f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@342afd43, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@76f7ae6, org.springframework.security.web.session.SessionManagementFilter@5836b576, org.springframework.security.web.access.ExceptionTranslationFilter@5e55a6b8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2c4e7e5e]
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2024-05-08 17:17:41 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2024-05-08 17:17:41 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-08 17:17:41 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8091 (http) with context path ''
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAppointmentsByDoctorIdAndAppointmentDateUsingGET_1
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_1
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_2
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingDELETE_1
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_3
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_4
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_5
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_6
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_7
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_8
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_9
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_10
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_11
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_12
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_13
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_14
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_15
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_16
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_17
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_18
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_19
+2024-05-08 17:17:41 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_20
+2024-05-08 17:17:42 [restartedMain] INFO  c.healthify.api.HealthifyApplication - Started HealthifyApplication in 3.573 seconds (JVM running for 381.683)
+2024-05-08 17:17:42 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2024-05-08 17:17:52 [http-nio-8091-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-08 17:17:52 [http-nio-8091-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-05-08 17:17:52 [http-nio-8091-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2024-05-08 17:17:52 [http-nio-8091-exec-2] INFO  c.h.api.controller.AuthController - in Login User = ram
+2024-05-08 17:17:52 [http-nio-8091-exec-2] INFO  c.h.a.aop.ExecutionTimeTrackerAdvice - Method Name = ResponseEntity com.healthify.api.controller.AuthController.loginAdmin(User,HttpServletResponse)time taken to execute 411 ms
+2024-05-08 17:17:56 [http-nio-8091-exec-3] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1048, SQLState: 23000
+2024-05-08 17:17:56 [http-nio-8091-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Column 'Password' cannot be null
+2024-05-08 17:18:18 [restartedMain] INFO  c.healthify.api.HealthifyApplication - Starting HealthifyApplication using Java 17.0.10 on LAPTOP-E3NOQKCE with PID 20688 (D:\Advance Ojt 711&713\HEALTHIFY\target\classes started by Vaibhav in D:\Advance Ojt 711&713\HEALTHIFY)
+2024-05-08 17:18:18 [restartedMain] INFO  c.healthify.api.HealthifyApplication - The following profiles are active: dev
+2024-05-08 17:18:18 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-08 17:18:18 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 25 ms. Found 0 JPA repository interfaces.
+2024-05-08 17:18:18 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8091 (http)
+2024-05-08 17:18:18 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-05-08 17:18:18 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.48]
+2024-05-08 17:18:18 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-05-08 17:18:18 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 625 ms
+2024-05-08 17:18:21 [restartedMain] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2024-05-08 17:18:21 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-08 17:18:21 [restartedMain] WARN  o.a.c.c.C.[Tomcat].[localhost].[/] - Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [DD61EF9DA4D8774A9DFFF54B27D9F35E]
+2024-05-08 17:18:21 [restartedMain] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.healthify.api.utility.MessageUtility.ACCOUNT_SID
+2024-05-08 17:18:21 [restartedMain] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.healthify.api.utility.MessageUtility.AUTH_TOKEN
+2024-05-08 17:18:21 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 15 endpoint(s) beneath base path '/actuator'
+2024-05-08 17:18:21 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/v2/api-docs'] with []
+2024-05-08 17:18:21 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/configuration/ui'] with []
+2024-05-08 17:18:21 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/swagger-resources/**'] with []
+2024-05-08 17:18:21 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/configuration/security'] with []
+2024-05-08 17:18:21 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure Ant [pattern='/webjars/**'] with []
+2024-05-08 17:18:21 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61a874d8, org.springframework.security.web.context.SecurityContextPersistenceFilter@22f29530, org.springframework.security.web.header.HeaderWriterFilter@1c0cacc5, org.springframework.security.web.authentication.logout.LogoutFilter@46b888fd, com.healthify.api.config.JwtAuthenticationFilter@425eab7b, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@23cc84b1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@769424e5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@f07c476, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3e9fe52b, org.springframework.security.web.session.SessionManagementFilter@f2e0064, org.springframework.security.web.access.ExceptionTranslationFilter@30ae70c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@50790d45]
+2024-05-08 17:18:21 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2024-05-08 17:18:21 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2024-05-08 17:18:21 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-08 17:18:22 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8091 (http) with context path ''
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: getAppointmentsByDoctorIdAndAppointmentDateUsingGET_1
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_1
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_2
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingDELETE_1
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_3
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_4
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_5
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_6
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_7
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_8
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_9
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_10
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_11
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_12
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_13
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_14
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_15
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_16
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_17
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_18
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_19
+2024-05-08 17:18:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: handleUsingGET_20
+2024-05-08 17:18:22 [restartedMain] INFO  c.healthify.api.HealthifyApplication - Started HealthifyApplication in 3.934 seconds (JVM running for 421.934)
+2024-05-08 17:18:22 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
