@@ -3,6 +3,8 @@ package com.healthify.api.controller;
 import java.sql.Date;
 import java.util.List;
 import javax.validation.Valid;
+
+import org.springframework.http.HttpStatus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,10 +70,36 @@ public class AdminController {
 	}
 
 	@GetMapping(value = "/get-total-count-of user", produces = "application/json")
-	public ResponseEntity<Long> getUsersTotalCounts() {
-		return null;
-		
-	}
+	public ResponseEntity<Object> getUsersTotalCounts() {
+        try {
+            Long totalCount = userService.getUsersTotalCounts();
+            if (totalCount != null) {
+                return ResponseEntity.ok(new TotalCountResponse(totalCount));
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                     .body("An unexpected error occurred while retrieving user count");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("An unexpected error occurred while retrieving user count");
+        }
+    }
+	
+	private static class TotalCountResponse {
+        private Long total_count;
+
+        public TotalCountResponse(Long total_count) {
+            this.total_count = total_count;
+        }
+
+        public Long getTotal_count() {
+            return total_count;
+        }
+
+        public void setTotal_count(Long total_count) {
+            this.total_count = total_count;
+        }
+    }
 
 	@GetMapping(value = "/get-total-count-of-user-by-type/{type}", produces = "application/json")
 	public ResponseEntity<Long> getUsersTotalCountsByType(@PathVariable String type) {

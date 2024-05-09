@@ -1,10 +1,12 @@
 package com.healthify.api.daoimpl;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,11 @@ import com.healthify.api.entity.Otp;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
 import com.healthify.api.security.CustomUserDetail;
+
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
+import javax.persistence.Query;
+
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -134,11 +141,21 @@ public class UserDaoImpl implements UserDao {
 	public Long getUsersTotalCounts() {
 		Session session = sf.getCurrentSession();
 		try {
-
-		} catch (Exception e) {
-			e.printStackTrace();
+			Query query = session.createQuery("SELECT COUNT(u) FROM User u");
+            Long totalCount = (Long) query.getSingleResult();
+            return totalCount;
+		} catch (NoResultException e) {
+            // Handle case when no users found
+            return 0L;
+		} catch (NonUniqueResultException e) {
+            // Handle case when more than one result found
+            e.printStackTrace(); // Log or handle the exception appropriately
+            return null;
+		}catch (HibernateException e) {
+            // Handle database-related errors
+            e.printStackTrace();
+            return null;
 		}
-		return null;
 	}
 
 	@Override
