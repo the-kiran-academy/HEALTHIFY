@@ -67,7 +67,8 @@ public class MedicineController {
 
 	@GetMapping(value = "/get-all-medicine")
 	public ResponseEntity<List<Medicine>> getAllMedicine() {
-		return null;
+		List<Medicine> allMedicine = medicineService.getAllMedicine();
+		return ResponseEntity.ok(allMedicine);
 	}
 
 	@PostMapping(value = "/uploadSheet")

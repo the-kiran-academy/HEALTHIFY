@@ -2,13 +2,18 @@ package com.healthify.api.daoimpl;
 
 import java.util.List;
 
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.healthify.api.dao.MedicineDao;
 import com.healthify.api.entity.Medicine;
+import com.healthify.api.exception.ResourceNotFoundException;
+import com.healthify.api.exception.SomethingWentWrongException;
+//import com.mysql.cj.Query;
 
 /**
  * @author RAM
@@ -135,12 +140,26 @@ public class MedicineDaoIMPL implements MedicineDao {
 	@Override
 	public List<Medicine> getAllMedicine() {
 		Session session = sf.getCurrentSession();
+		List<Medicine> list=null;
 		try {
-
-		} catch (Exception e) {
+			Query<Medicine> query = session.createQuery("FROM Medicine");
+			 list = query.list();
+			 System.out.println(list);
+			 if (!list.isEmpty()) {
+				return list;
+			}
+			 else {
+				throw new ResourceNotFoundException("Resource Not Found");
+			}
+			
+		}catch (ResourceNotFoundException e) {
 			e.printStackTrace();
+			throw new ResourceNotFoundException("Resource Not Found");
 		}
-		return null;
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new SomethingWentWrongException("Something Went Wrong During Get All Medicine");
+		}
 	}
 
 	@Override

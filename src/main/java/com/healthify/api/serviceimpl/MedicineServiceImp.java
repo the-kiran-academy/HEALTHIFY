@@ -55,7 +55,7 @@ public class MedicineServiceImp implements MedicineService {
 
 	@Override
 	public List<Medicine> getAllMedicine() {
-		return null;
+		return medicineDao.getAllMedicine();
 		
 	}
 
