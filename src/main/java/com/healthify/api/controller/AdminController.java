@@ -43,7 +43,7 @@ public class AdminController {
 
 	@PutMapping(value="/update-user", produces = "application/json")
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
-		return null;
+		return ResponseEntity.ok(userService.updateUser(user));
 		
 
 	}
