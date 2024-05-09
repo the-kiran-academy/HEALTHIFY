@@ -84,7 +84,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> getUserByFirstName(String firstName) {
-		return null;
+		List<User> users = dao.getUserByFirstName(firstName);
+		return users;
 		
 	}
 

@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -15,6 +16,8 @@ import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Otp;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.ResourceNotFoundException;
+import com.healthify.api.exception.SomethingWentWrongException;
 import com.healthify.api.security.CustomUserDetail;
 
 @Repository
@@ -165,13 +168,24 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<User> getUserByFirstName(String firstName) {
+		List<User> users=null;
 		Session session = sf.getCurrentSession();
 		try {
 
+			Query<User> query = session.createQuery("FROM User WHERE firstName=:name");
+			query.setParameter("name", firstName);
+			users=query.list();
+			
+			if(users.isEmpty())
+			{
+				throw new ResourceNotFoundException("Resource not found for this firstName");
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new ResourceNotFoundException("Resource not found for this firstName");
 		}
-		return null;
+		return users;
 	}
 
 	@Override

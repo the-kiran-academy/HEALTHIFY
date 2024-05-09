@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -85,9 +86,18 @@ public class AdminController {
 		
 	}
 
-	@GetMapping(value = "/get-user-by-firtname/{firstName}", produces = "application/json")
+	@GetMapping(value = "/get-user-by-firstname/{firstName}", produces = "application/json")
 	public ResponseEntity<List<User>> getUserByFirstName(@PathVariable String firstName) {
-		return null;
+		
+		List<User> users = userService.getUserByFirstName(firstName);
+		
+		if(users.isEmpty())
+		{
+			
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		
+		return new ResponseEntity<>(users, HttpStatus.FOUND);
 		
 	}
 
