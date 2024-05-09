@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -15,6 +17,8 @@ import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Otp;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.ResourceNotFoundException;
+import com.healthify.api.exception.SomethingWentWrongException;
 import com.healthify.api.security.CustomUserDetail;
 
 @Repository
@@ -209,13 +213,18 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public Role getRoleById(int roleId) {
-		Session session = sf.getCurrentSession();
+		//Session session = sf.getCurrentSession();
 		Role role = null;
-		try {
-			role = session.get(Role.class, roleId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		 try (Session session = sf.openSession()) {
+		        Transaction transaction = session.beginTransaction();
+		        role = session.get(Role.class, roleId);
+	        
+		        if (role == null) {
+		            throw new ResourceNotFoundException("Role not found with id: " + roleId);
+		        }
+		    } catch (HibernateException e) {
+		        throw new SomethingWentWrongException("Connection Failure");
+		    }
 		return role;
 	}
 

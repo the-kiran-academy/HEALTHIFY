@@ -63,7 +63,8 @@ public class AdminController {
 
 	@GetMapping(value = "/get-role-by-id/{roleId}", produces = "application/json")
 	public ResponseEntity<Role> getRoleById(@PathVariable int roleId) {
-		return null;
+		Role role = userService.getRoleById(roleId);
+        return ResponseEntity.ok(role);
 		
 	}
 

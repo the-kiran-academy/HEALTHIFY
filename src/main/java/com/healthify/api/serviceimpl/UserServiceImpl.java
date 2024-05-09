@@ -97,7 +97,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Role getRoleById(int roleId) {
-		return null;
+		 Role role =dao.getRoleById(roleId);
+		return role;
 
 		
 	}
