@@ -1,6 +1,8 @@
 package com.healthify.api.serviceimpl;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.security.CustomUserDetail;
 import com.healthify.api.service.UserService;
 
@@ -24,8 +27,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean addUser(User user) {
-		return false;
-
+		String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+		user.setCreatedDate(Date.valueOf(timeStamp));
+		
+		String encryptedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(encryptedPassword);
+		
+		return dao.addUser(user);
+		
 	}
 
 	@Override

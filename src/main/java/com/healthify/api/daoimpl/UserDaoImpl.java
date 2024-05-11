@@ -3,6 +3,8 @@ package com.healthify.api.daoimpl;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.RollbackException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -15,6 +17,8 @@ import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Otp;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.ResourceAlreadyExistsException;
+import com.healthify.api.exception.SomethingWentWrongException;
 import com.healthify.api.security.CustomUserDetail;
 
 @Repository
@@ -29,13 +33,23 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public boolean addUser(User user) {
+		boolean isAdded=false;
 		Session session = sf.getCurrentSession();
 		try {
-
+			User userName = getUserById(user.getUsername());
+			if(userName==null) {
+			session.save(user);
+			isAdded=true;
+			}else {
+				throw new ResourceAlreadyExistsException("User Name is already exist with usename : "+user.getUsername());
+			}
+		
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new ResourceAlreadyExistsException("User Name is already exist with usename : "+user.getUsername());
 		}
-		return false;
+		return isAdded;
+		
 	}
 
 	@Override

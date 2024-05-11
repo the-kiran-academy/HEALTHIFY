@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,8 +32,14 @@ public class AdminController {
 
 	@PostMapping(value= "/add-user", produces = "application/json")
 	public ResponseEntity<Boolean> registerUser(@RequestBody @Valid User user) {
-		return null;
-
+		boolean dbUser = userService.addUser(user);
+		
+		if(dbUser) {
+			return new ResponseEntity<Boolean>(dbUser, HttpStatus.CREATED);
+		}else {
+			return new ResponseEntity<Boolean>(dbUser, HttpStatus.CONFLICT);
+		}
+	
 	}
 
 	@DeleteMapping(value = "/delete-user/{id}", produces = "application/json")
