@@ -1,10 +1,32 @@
 package com.healthify.api.daoimpl;
 
 import java.sql.Date;
+
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+//
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.EntityType;
+import javax.persistence.metamodel.Metamodel;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Expression;
+import javax.persistence.NoResultException;
+
+//
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +37,9 @@ import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Otp;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.InvalidCredentialsException;
+import com.healthify.api.exception.ResourceNotFoundException;
+import com.healthify.api.exception.SomethingWentWrongException;
 import com.healthify.api.security.CustomUserDetail;
 
 @Repository
@@ -77,19 +102,19 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean deleteUserById(String id){
+	public boolean deleteUserById(String id) {
 		Session session = sf.getCurrentSession();
-		
+
 		try {
-	        User user = session.get(User.class, id);
-	        
-	        if (user != null) {
-	            session.delete(user);
-	            return true;
-	        } else {
-	            return false;
-	        }
-	    } catch (Exception e) {
+			User user = session.get(User.class, id);
+
+			if (user != null) {
+				session.delete(user);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -144,12 +169,34 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public Long getUsersTotalCounts(String type) {
 		Session session = sf.getCurrentSession();
-		try {
 
+		try {
+			// Check if the provided type is a valid property name in the User entity
+			Metamodel metamodel = session.getSessionFactory().getMetamodel();
+			EntityType<User> entityType = metamodel.entity(User.class);
+			Set<String> attributeNames = entityType.getAttributes().stream().map(attr -> attr.getName())
+					.collect(Collectors.toSet());
+
+			if (!attributeNames.contains(type)) {
+				throw new IllegalArgumentException("Invalid type: " + type);
+			}
+
+			// Create criteria to count users where the specified property is not null
+			Long totalCount = (Long) session.createCriteria(User.class).add(Restrictions.isNotNull(type))
+					.setProjection(Projections.rowCount()).uniqueResult();
+
+			if (totalCount == null) {
+				throw new ResourceNotFoundException("No users found for the provided type: " + type);
+			}
+			return totalCount;
+		} catch (IllegalArgumentException e) {
+			throw e; // Pass through the IllegalArgumentException
+		} catch (ResourceNotFoundException e) {
+			throw e;
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new SomethingWentWrongException("Error occurred while getting user count by type: " + e.getMessage());
 		}
-		return null;
+
 	}
 
 	@Override

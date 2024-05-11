@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.healthify.api.aop.TrackExecutionTime;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.InvalidCredentialsException;
+import com.healthify.api.exception.ResourceNotFoundException;
+import com.healthify.api.exception.SomethingWentWrongException;
 import com.healthify.api.service.UserService;
 
 @RestController
@@ -29,7 +33,7 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 
-	@PostMapping(value= "/add-user", produces = "application/json")
+	@PostMapping(value = "/add-user", produces = "application/json")
 	public ResponseEntity<Boolean> registerUser(@RequestBody @Valid User user) {
 		return null;
 
@@ -38,13 +42,12 @@ public class AdminController {
 	@DeleteMapping(value = "/delete-user/{id}", produces = "application/json")
 	public ResponseEntity<Boolean> deleteUser(@PathVariable String id) {
 		return null;
-		
+
 	}
 
-	@PutMapping(value="/update-user", produces = "application/json")
+	@PutMapping(value = "/update-user", produces = "application/json")
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		return null;
-		
 
 	}
 
@@ -52,49 +55,63 @@ public class AdminController {
 	@TrackExecutionTime
 	public ResponseEntity<List<User>> getAllAdmin() {
 		return null;
-		
+
 	}
 
 	@PostMapping(value = "/add-role", produces = "application/json")
 	public ResponseEntity<Object> addRole(@RequestBody Role role) {
 		return null;
-		
+
 	}
 
 	@GetMapping(value = "/get-role-by-id/{roleId}", produces = "application/json")
 	public ResponseEntity<Role> getRoleById(@PathVariable int roleId) {
 		return null;
-		
+
 	}
 
 	@GetMapping(value = "/get-total-count-of user", produces = "application/json")
 	public ResponseEntity<Long> getUsersTotalCounts() {
 		return null;
-		
+
 	}
 
 	@GetMapping(value = "/get-total-count-of-user-by-type/{type}", produces = "application/json")
 	public ResponseEntity<Long> getUsersTotalCountsByType(@PathVariable String type) {
-		return null;
-		
+		if (type == null || type.trim().isEmpty()) {
+			return ResponseEntity.badRequest().build();
+		}
+
+		try {
+			Long totalCount = userService.getUsersTotalCounts(type);
+			return ResponseEntity.ok(totalCount);
+		} catch (IllegalArgumentException e) {
+			// Handle invalid type error
+			return ResponseEntity.status(400).body(null); // Bad request with no content
+		} catch (ResourceNotFoundException e) {
+			// Handle resource not found error
+			return ResponseEntity.notFound().build();
+		} catch (SomethingWentWrongException e) {
+			// Handle other errors
+			return ResponseEntity.status(500).build();
+		}
 	}
 
 	@GetMapping(value = "/get-total-count-of-user-by-date-and-type//{date}/{type}", produces = "application/json")
 	public ResponseEntity<Long> getUserCountByDateAndType(@PathVariable Date date, @PathVariable String type) {
 		return null;
-		
+
 	}
 
 	@GetMapping(value = "/get-user-by-firtname/{firstName}", produces = "application/json")
 	public ResponseEntity<List<User>> getUserByFirstName(@PathVariable String firstName) {
 		return null;
-		
+
 	}
 
 	@GetMapping(value = "/user/report", produces = "application/json")
 	public String generateReport() {
 		return null;
-
 
 	}
 
