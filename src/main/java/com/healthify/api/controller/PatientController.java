@@ -75,15 +75,22 @@ public class PatientController {
 
 	}
 
-	@GetMapping(value = "/count-by-registerdate",produces = "application/json")
-	public ResponseEntity<Long> getPatientsCountByDate(@RequestParam Date registeredDate)
-	{
-		Long Count = patientService.getPatientsCountByDate(registeredDate);
-        return new ResponseEntity<>(Count, HttpStatus.OK);
-    }
+	@GetMapping(value = "/count-by-registerdate", produces = "application/json")
+    public ResponseEntity<Long> getPatientsCountByDate(@RequestParam Date registeredDate) {
+		 if (registeredDate == null) {
+		        throw new IllegalArgumentException("Registered date cannot be null");
+		    }
+		 try {
+		        Long count = patientService.getPatientsCountByDate(registeredDate);
+		        return new ResponseEntity<>(count, HttpStatus.OK);
+		    } catch (IllegalArgumentException e) {
+		        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		    } catch (RuntimeException e) {
+		        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		    }
+	}
 
-
-	@GetMapping(value = "/top5-patients-by-date")
+    @GetMapping(value = "/top5-patients-by-date")
 	public ResponseEntity<List<Patient>> getTop5PatientAddedByDate() {
 
 		return null;

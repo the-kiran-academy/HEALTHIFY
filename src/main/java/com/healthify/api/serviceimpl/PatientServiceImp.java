@@ -62,12 +62,12 @@ public class PatientServiceImp implements PatientService {
 	}
 
 	@Override
-	public Long getPatientsCountByDate(Date registerDate) {
-		return null;
-		
-	}
+    public Long getPatientsCountByDate(Date registeredDate) {
+       
+     return patientDao.getPatientsCountByDate(registeredDate);
+    }
 
-	@Override
+    @Override
 	public List<Patient> getTop5PatientAddedByDate() {
 		return null;
 		

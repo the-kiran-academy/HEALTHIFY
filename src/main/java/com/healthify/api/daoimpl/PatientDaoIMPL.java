@@ -2,6 +2,7 @@ package com.healthify.api.daoimpl;
 import java.sql.Date;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -51,21 +52,27 @@ public class PatientDaoIMPL implements PatientDao {
 
 	@Override
 	public Long getPatientsCountByDate(Date registeredDate) {
-
-		Session session = sf.getCurrentSession();
-		try 
-		{
+		
+		 if (registeredDate == null) {
+		        throw new IllegalArgumentException("Registered date cannot be null");
+		    }
+         Session sess = null;
+		 try 
+		 {
+			Session session = sf.getCurrentSession();
 			Query<Long> query = session.createQuery("SELECT COUNT(*) FROM Patient WHERE registerDate = :registerDate", Long.class);
 			query.setParameter("registerDate", registeredDate);
 			Long Count = query.uniqueResult();
-			return Count;
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-			
-		}
-		 return 0l;
+			 return Count != null ? Count : 0L; 
+		 } 
+		catch (HibernateException e) {
+	        e.printStackTrace();
+	        throw new RuntimeException("Error while fetching patient count by date", e);
+	    } finally {
+	        if (sess != null && sess.isOpen()) {
+	            sess.close(); 
+	        }
+	    }
 	}
 
 	@Override
