@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.ResourceNotFoundException;
 import com.healthify.api.security.CustomUserDetail;
 import com.healthify.api.service.UserService;
 
@@ -42,13 +43,19 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean deleteUserById(String id) {
 		return false;
-		
+
 	}
 
 	@Override
 	public User getUserById(String id) {
-		return null;
-		
+		User user = dao.getUserById(id);
+		if (user == null) {
+			throw new ResourceNotFoundException("Resource Not Exists" + id);
+
+		}
+
+		return user;
+
 	}
 
 	@Override
@@ -67,25 +74,25 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Long getUsersTotalCounts() {
 		return null;
-		
+
 	}
 
 	@Override
 	public Long getUsersTotalCounts(String type) {
 		return null;
-		
+
 	}
 
 	@Override
 	public Long getUserCountByDateAndType(Date registereddate, String type) {
 		return null;
-		
+
 	}
 
 	@Override
 	public List<User> getUserByFirstName(String firstName) {
 		return null;
-		
+
 	}
 
 	@Override
@@ -99,13 +106,12 @@ public class UserServiceImpl implements UserService {
 	public Role getRoleById(int roleId) {
 		return null;
 
-		
 	}
 
 	@Override
 	public String generateReport() {
 		return null;
-		
+
 	}
 
 }
