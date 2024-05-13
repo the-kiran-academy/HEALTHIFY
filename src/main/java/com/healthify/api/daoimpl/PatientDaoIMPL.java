@@ -1,4 +1,5 @@
 package com.healthify.api.daoimpl;
+
 import java.sql.Date;
 import java.util.List;
 
@@ -26,12 +27,9 @@ public class PatientDaoIMPL implements PatientDao {
 	public List<Patient> findByFirstnameContainingIgnoreCase(String patientName) {
 
 		Session session = sf.getCurrentSession();
-		try 
-		{
+		try {
 
-		} 
-		catch (Exception e) 
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -53,19 +51,17 @@ public class PatientDaoIMPL implements PatientDao {
 	public Long getPatientsCountByDate(Date registeredDate) {
 
 		Session session = sf.getCurrentSession();
-		try 
-		{
-			Query<Long> query = session.createQuery("SELECT COUNT(*) FROM Patient WHERE registerDate = :registerDate", Long.class);
+		try {
+			Query<Long> query = session.createQuery("SELECT COUNT(*) FROM Patient WHERE registerDate = :registerDate",
+					Long.class);
 			query.setParameter("registerDate", registeredDate);
 			Long Count = query.uniqueResult();
 			return Count;
-		} 
-		catch (Exception e) 
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
-			
+
 		}
-		 return 0l;
+		return 0l;
 	}
 
 	@Override
@@ -82,14 +78,24 @@ public class PatientDaoIMPL implements PatientDao {
 	@Override
 	public Patient addPatient(Patient patient) {
 
-		Session session = sf.getCurrentSession();
+		Session session = null;
+		boolean isAdded = false;
+
 		try {
+			session = sf.getCurrentSession();
+			session.save(patient);
+			isAdded = true;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
-		
+
+		if (isAdded) {
+			return patient;
+		} else {
+			return null;
+		}
+
 	}
 
 	@Override
@@ -113,7 +119,7 @@ public class PatientDaoIMPL implements PatientDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return session.get(Patient.class, id);
 	}
 
 	@Override

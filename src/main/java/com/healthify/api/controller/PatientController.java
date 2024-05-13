@@ -3,6 +3,8 @@ package com.healthify.api.controller;
 import java.sql.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.healthify.api.entity.Patient;
+import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.service.PatientService;
 
 /**
@@ -35,9 +38,15 @@ public class PatientController {
 	private PatientService patientService;
 
 	@PostMapping(value = "/add-patient")
-	public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) 
-	{      
-		return null;
+	public ResponseEntity<Patient> addPatient(@Valid @RequestBody Patient patient) {
+		try {
+			Patient addedPatient = patientService.addPatient(patient);
+			LOG.info("Patient Added Successfully :" + addedPatient);
+			return ResponseEntity.status(HttpStatus.CREATED).body(addedPatient);
+		} catch (Exception e) {
+			LOG.error("Patient Already Exists With ID :" + patient.getId(), e);
+			throw new ResourceAlreadyExistsException("Pateint Already Exists with ID :" + patient.getId());
+		}
 	}
 
 	@DeleteMapping(value = "/delete-patient-by-id/{id}")
@@ -75,13 +84,11 @@ public class PatientController {
 
 	}
 
-	@GetMapping(value = "/count-by-registerdate",produces = "application/json")
-	public ResponseEntity<Long> getPatientsCountByDate(@RequestParam Date registeredDate)
-	{
+	@GetMapping(value = "/count-by-registerdate", produces = "application/json")
+	public ResponseEntity<Long> getPatientsCountByDate(@RequestParam Date registeredDate) {
 		Long Count = patientService.getPatientsCountByDate(registeredDate);
-        return new ResponseEntity<>(Count, HttpStatus.OK);
-    }
-
+		return new ResponseEntity<>(Count, HttpStatus.OK);
+	}
 
 	@GetMapping(value = "/top5-patients-by-date")
 	public ResponseEntity<List<Patient>> getTop5PatientAddedByDate() {
