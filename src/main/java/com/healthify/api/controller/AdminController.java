@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.healthify.api.aop.TrackExecutionTime;
+import com.healthify.api.entity.MedicineDistributor;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.service.MedicineDistributorService;
 import com.healthify.api.service.UserService;
 
 @RestController
@@ -28,6 +30,15 @@ public class AdminController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private MedicineDistributorService distributorService;
+	
+	@GetMapping(value = "/get-distributor-by-name/{distributorName}", produces = "application/json")
+	public ResponseEntity<List<MedicineDistributor>> getDistributorsByName(@PathVariable String distributorName) 
+	{
+		return ResponseEntity.ok(distributorService.getDistributorsByName(distributorName));
+	}
 
 	@PostMapping(value= "/add-user", produces = "application/json")
 	public ResponseEntity<Boolean> registerUser(@RequestBody @Valid User user) {

@@ -46,10 +46,11 @@ public class MedicineDistributorServiceImp implements MedicineDistributorService
 		return null;
 		
 	}
-
 	@Override
 	public List<MedicineDistributor> getDistributorsByName(String distributorName) {
-		return null;
+			
+		return  medicineDistributorDao.getDistributorsByName(distributorName);
+		
 		
 	}
 
