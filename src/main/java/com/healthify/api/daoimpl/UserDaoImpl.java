@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Otp;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.SomethingWentWrongException;
 import com.healthify.api.security.CustomUserDetail;
 
 @Repository
@@ -111,12 +113,17 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<User> getAllUsers() {
 		Session session = sf.getCurrentSession();
+		
 		try {
-
-		} catch (Exception e) {
-			e.printStackTrace();
+			
+			return session.createQuery("from User", User.class).getResultList();
+			
+		}catch (HibernateException e) {
+			
+			throw new SomethingWentWrongException("Issue in locating a suitable current session");
+			
 		}
-		return null;
+		
 	}
 
 	@Override

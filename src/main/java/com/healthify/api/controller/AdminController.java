@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,7 +52,10 @@ public class AdminController {
 	@GetMapping(value = "get-all-user", produces = "application/json")
 	@TrackExecutionTime
 	public ResponseEntity<List<User>> getAllAdmin() {
-		return null;
+		
+		List<User> allUsers = userService.getAllUsers();
+        
+		return new ResponseEntity<>(allUsers, HttpStatus.OK);
 		
 	}
 
