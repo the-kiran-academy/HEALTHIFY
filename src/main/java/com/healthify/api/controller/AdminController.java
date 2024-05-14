@@ -3,8 +3,11 @@ package com.healthify.api.controller;
 import java.sql.Date;
 import java.util.List;
 import javax.validation.Valid;
+
+import org.apache.http.HttpStatus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jfree.util.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.healthify.api.aop.TrackExecutionTime;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.service.UserService;
 
 @RestController
@@ -57,8 +61,15 @@ public class AdminController {
 
 	@PostMapping(value = "/add-role", produces = "application/json")
 	public ResponseEntity<Object> addRole(@RequestBody Role role) {
-		return null;
-		
+			
+		Role addRole = userService.addRole(role);
+		if(addRole.getId() !=0) {
+			Log.info("Role added " + addRole);
+			return new ResponseEntity<Object>(addRole, org.springframework.http.HttpStatus.CREATED);
+		}
+		else {
+			throw new ResourceAlreadyExistsException("Role already exist with ID : - " + role.getId()+ " "+" Role Name : - " + role.getName());
+		}  
 	}
 
 	@GetMapping(value = "/get-role-by-id/{roleId}", produces = "application/json")

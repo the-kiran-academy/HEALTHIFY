@@ -1,5 +1,6 @@
 package com.healthify.api.daoimpl;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +17,7 @@ import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Otp;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.security.CustomUserDetail;
 
 @Repository
@@ -199,12 +202,26 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public Role addRole(Role role) {
 		Session session = sf.getCurrentSession();
+		Role newRole = new Role();
+		Role dbrole = null;
 		try {
-
-		} catch (Exception e) {
+			 dbrole = session.get(Role.class, role.getId());
+			
+			if(dbrole == null) {
+				newRole.setId(role.getId());
+				newRole.setName(role.getName());
+				session.save(newRole);
+				
+			}else {
+				throw new ResourceAlreadyExistsException("Role already exists ");
+				
+			}		
+		} 
+		catch(Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		
+		return newRole;	
 	}
 
 	@Override

@@ -90,8 +90,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Role addRole(Role role) {
+	
+		return dao.addRole(role);
 
-		return null;
 
 	}
 
