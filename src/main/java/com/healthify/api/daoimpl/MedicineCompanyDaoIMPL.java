@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
+import com.healthify.api.exception.ResourceAlreadyExistsException;
+import com.healthify.api.exception.SomethingWentWrongException;
+import javax.persistence.RollbackException;
 import com.healthify.api.dao.MedicineCompanyDao;
 import com.healthify.api.entity.MedicineCompany;
 
@@ -38,13 +41,40 @@ public class MedicineCompanyDaoIMPL implements MedicineCompanyDao {
 
 	@Override
 	public MedicineCompany addMedicineCompany(MedicineCompany medicineCompany) {
-		Session session = sf.getCurrentSession();
+		//Session session = sf.getCurrentSession();
 		try {
+			Session session = sf.openSession();
+			List<MedicineCompany> existingCompanies = session.createQuery("FROM MedicineCompany", MedicineCompany.class)
+					.list();
 
-		} catch (Exception e) {
+			for (MedicineCompany existingCompany : existingCompanies) {
+				if (existingCompany.getId().equals(medicineCompany.getId())) {
+					throw new ResourceAlreadyExistsException(
+							"Company with ID already exists: " + medicineCompany.getId());
+				}
+				if (existingCompany.getName().equals(medicineCompany.getName())) {
+					throw new ResourceAlreadyExistsException(
+							"Company with name already exists: " + medicineCompany.getName());
+				}
+				if (existingCompany.getEmailid().equals(medicineCompany.getEmailid())) {
+					throw new ResourceAlreadyExistsException(
+							"Company with email ID already exists: " + medicineCompany.getEmailid());
+				}
+				if (existingCompany.getMobileNo().equals(medicineCompany.getMobileNo())) {
+					throw new ResourceAlreadyExistsException(
+							"Company with mobile number already exists: " + medicineCompany.getMobileNo());
+				}
+			}
+			session.persist(medicineCompany);
+			Transaction tx = session.beginTransaction();
+			tx.commit();
+
+		} catch (RollbackException e) {
 			e.printStackTrace();
+			throw new SomethingWentWrongException("Something went wrong in during add medicinecompany data");
+
 		}
-		return null;
+		return medicineCompany;
 	}
 
 	@Override

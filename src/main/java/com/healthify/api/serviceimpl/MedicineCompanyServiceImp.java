@@ -20,7 +20,7 @@ public class MedicineCompanyServiceImp implements MedicineCompanyService {
 
 	@Override
 	public MedicineCompany addMedicineCompany(MedicineCompany medicineCompany) {
-		return null;
+		return medicineCompanyDao.addMedicineCompany(medicineCompany);
 
 	}
 
