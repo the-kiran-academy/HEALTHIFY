@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.ResourceNotFoundException;
 import com.healthify.api.security.CustomUserDetail;
 import com.healthify.api.service.UserService;
 
@@ -53,9 +54,15 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> getAllUsers() {
+		
+		List<User> allUsers=dao.getAllUsers();
+		
+		if(allUsers.isEmpty())
+		{
+			throw new ResourceNotFoundException("Users Not found.");
+		}
 
-		return null;
-
+		return allUsers;
 	}
 
 	@Override
@@ -90,9 +97,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Role addRole(Role role) {
-	
-		return dao.addRole(role);
 
+		return null;
 
 	}
 

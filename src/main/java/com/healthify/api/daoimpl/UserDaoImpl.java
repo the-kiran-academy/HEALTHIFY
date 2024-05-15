@@ -1,15 +1,15 @@
 package com.healthify.api.daoimpl;
 
-import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +17,7 @@ import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Otp;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
-import com.healthify.api.exception.ResourceAlreadyExistsException;
+import com.healthify.api.exception.SomethingWentWrongException;
 import com.healthify.api.security.CustomUserDetail;
 
 @Repository
@@ -111,16 +111,17 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 
+	
 	@Override
 	public List<User> getAllUsers() {
-		Session session = sf.getCurrentSession();
-		try {
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+	    try {
+			Session session = sf.getCurrentSession();
+	        return session.createQuery("from User", User.class).getResultList();
+	    } catch (HibernateException e) {
+	        throw new SomethingWentWrongException("Issue in retrieving all users");
+	    }
 	}
+
 
 	@Override
 	public User updateUser(User user) {
@@ -202,26 +203,12 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public Role addRole(Role role) {
 		Session session = sf.getCurrentSession();
-		Role newRole = new Role();
-		Role dbrole = null;
 		try {
-			 dbrole = session.get(Role.class, role.getId());
-			
-			if(dbrole == null) {
-				newRole.setId(role.getId());
-				newRole.setName(role.getName());
-				session.save(newRole);
-				
-			}else {
-				throw new ResourceAlreadyExistsException("Role already exists ");
-				
-			}		
-		} 
-		catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return newRole;	
+		return null;
 	}
 
 	@Override
