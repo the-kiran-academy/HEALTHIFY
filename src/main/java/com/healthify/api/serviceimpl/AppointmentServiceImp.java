@@ -28,9 +28,10 @@ public class AppointmentServiceImp implements AppointmentService {
 	public int doctorAvailibilityChecker(String doctorId, Date date, String startTime, String endTime) {
 
 		
-		return 0;
+		return appointmentDao.doctorAvailibilityChecker(doctorId, date, startTime, endTime);
 
 		}
+	
 	
 	@Override
 	public int scheduleAppointment(Appointment appointment) {

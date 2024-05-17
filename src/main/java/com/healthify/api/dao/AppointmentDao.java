@@ -26,6 +26,7 @@ public interface AppointmentDao {
 	Long getCountByTreatmentStatusAndBillingDate(String treatmentStatus, Date billingDate);
 	List<Appointment> getAllAppointments();
 	List<Appointment> getTop5AppointmentsByDate(Date date);
-    
+	int doctorAvailibilityChecker(String doctorId, Date date, String timeFrom, String timeTo);
+
 	
 }

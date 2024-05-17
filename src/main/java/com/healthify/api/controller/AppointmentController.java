@@ -2,6 +2,8 @@ package com.healthify.api.controller;
 
 import java.sql.Date;
 import java.util.List;
+
+import org.apache.http.HttpStatus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +33,38 @@ public class AppointmentController {
 
 	private static Logger LOG = LogManager.getLogger(AppointmentController.class);
 
-		@GetMapping(value = "check-doctor-availibility", produces = "application/json")
-		public ResponseEntity<String> doctorAvailibilityChecker(@RequestParam String doctorId, @RequestParam Date date,
-				@RequestParam String startTime, @RequestParam String endTime) {
-					
-			return null;
-	}
+	@GetMapping(value = "check-doctor-availibility", produces = "application/json")
+	public ResponseEntity<String> doctorAvailibilityChecker(@RequestParam String doctorId, @RequestParam Date date,
+			@RequestParam String startTime, @RequestParam String endTime) {
+		
+		
+		 // Call the service layer to check doctor availability
+        int availabilityStatus = service.doctorAvailibilityChecker(doctorId, date, startTime, endTime);
 
+        // Prepare response based on availability status
+        String message;
+        switch (availabilityStatus) {
+            case 0:
+                message = "Doctor is available for appointment.";
+                break;
+            case 1:
+                message = "This time slot is already booked.";
+                break;
+            case 2:
+                message = "Doctor is on time off period.";
+                break;
+            case 3:
+                message = "Doctor is not available for today.";
+                break;
+            default:
+                message = "An error occurred while checking availability.";
+                break;
+        }
+
+        return ResponseEntity.status(HttpStatus.SC_OK).body(message);
+    
+			
+	}
 	@PostMapping(value = "/schedule-appointment", produces = "application/json")
 	public ResponseEntity<String> scheduleAppointment(@RequestBody Appointment appointment) {
 		return null;
