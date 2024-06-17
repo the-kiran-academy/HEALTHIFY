@@ -53,9 +53,7 @@ public class AdminController {
 	@TrackExecutionTime
 	public ResponseEntity<List<User>> getAllAdmin() {
 		
-		List<User> allUsers = userService.getAllUsers();
-		
-		return new ResponseEntity<List<User>>(allUsers, HttpStatus.OK);
+		return null;
 	}
 
 	@PostMapping(value = "/add-role", produces = "application/json")
