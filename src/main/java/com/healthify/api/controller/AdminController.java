@@ -100,5 +100,12 @@ public class AdminController {
 
 
 	}
+	
+	@GetMapping("/sample")
+	public ResponseEntity<String> sample(){
+		String msg=userService.sample();
+		return new ResponseEntity<String>(msg, HttpStatus.OK);
+		
+	}
 
 }
