@@ -38,6 +38,9 @@ public class AdminController {
 
 	@DeleteMapping(value = "/delete-user/{id}", produces = "application/json")
 	public ResponseEntity<Boolean> deleteUser(@PathVariable String id) {
+		
+		userService.deleteUserById(id);
+		
 		return null;
 		
 	}
