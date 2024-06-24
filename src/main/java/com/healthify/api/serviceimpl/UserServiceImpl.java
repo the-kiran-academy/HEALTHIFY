@@ -116,4 +116,10 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+	@Override
+	public String sample() {
+		
+		return "hi";
+	}
+
 }
