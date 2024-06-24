@@ -11,6 +11,7 @@ import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
 import com.healthify.api.exception.ResourceNotFoundException;
+import com.healthify.api.exception.UserNotFoundException;
 import com.healthify.api.security.CustomUserDetail;
 import com.healthify.api.service.UserService;
 
@@ -67,9 +68,54 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User updateUser(User user) {
-		return null;
+		User user1 = dao.findByUsername(user.getUsername());
+        if (user1 == null) {
+            throw new UserNotFoundException("Username not found");
+        }
 
-	}
+        if (user.getPassword() != null) {
+            String encodedPassword = passwordEncoder.encode(user.getPassword());
+            user1.setPassword(encodedPassword);
+        }
+        if (user.getEmailid() != null) {
+            user1.setEmailid(user.getEmailid());
+        }
+        if (user.getFirstname() != null) {
+            user1.setFirstname(user.getFirstname());
+        }
+        if (user.getLastname() != null) {
+            user1.setLastname(user.getLastname());
+        }
+        if (user.getMobileno() != null) {
+            user1.setMobileno(user.getMobileno());
+        }
+        if (user.getStreet() != null) {
+            user1.setStreet(user.getStreet());
+        }
+        if (user.getCity() != null) {
+            user1.setCity(user.getCity());
+        }
+        if (user.getPincode() != null) {
+            user1.setPincode(user.getPincode());
+        }
+        if (user.getQuestion() != null) {
+            user1.setQuestion(user.getQuestion());
+        }
+        if (user.getAnswer() != null) {
+            user1.setAnswer(user.getAnswer());
+        }
+        if (user.getSpecialties() != null) {
+            user1.setSpecialties(user.getSpecialties());
+        }
+        if (user.getRoles() != null) {
+            user1.setRoles(user.getRoles());
+        }
+        if(user.getCreatedDate() != null) {
+        	user1.setCreatedDate(user.getCreatedDate());
+        }
+        return dao.updateUser(user1);
+    }
+	
 
 	@Override
 	public Long getUsersTotalCounts() {

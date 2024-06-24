@@ -1,14 +1,20 @@
 package com.healthify.api.daoimpl;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
+
+import javax.sql.DataSource;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -23,6 +29,14 @@ import com.healthify.api.security.CustomUserDetail;
 @Repository
 public class UserDaoImpl implements UserDao {
 	private static Logger LOG = LogManager.getLogger(UserDaoImpl.class);
+
+	// *******************************
+	private DataSource dataSource;
+
+	public UserDaoImpl(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+	// *******************************
 
 	@Autowired
 	private SessionFactory sf;
@@ -80,19 +94,19 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean deleteUserById(String id){
+	public boolean deleteUserById(String id) {
 		Session session = sf.getCurrentSession();
-		
+
 		try {
-	        User user = session.get(User.class, id);
-	        
-	        if (user != null) {
-	            session.delete(user);
-	            return true;
-	        } else {
-	            return false;
-	        }
-	    } catch (Exception e) {
+			User user = session.get(User.class, id);
+
+			if (user != null) {
+				session.delete(user);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -111,28 +125,54 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 
-	
 	@Override
 	public List<User> getAllUsers() {
-	    try {
+		try {
 			Session session = sf.getCurrentSession();
-	        return session.createQuery("from User", User.class).getResultList();
-	    } catch (HibernateException e) {
-	        throw new SomethingWentWrongException("Issue in retrieving all users");
-	    }
+			return session.createQuery("from User", User.class).getResultList();
+		} catch (HibernateException e) {
+			throw new SomethingWentWrongException("Issue in retrieving all users");
+		}
 	}
-
 
 	@Override
 	public User updateUser(User user) {
 		Session session = sf.getCurrentSession();
 		try {
+			session.update(user);
+		
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return user;
 	}
+
+	// *******************************************
+	@Override
+	public User findByUsername(String username) {
+		Session session = null;
+		try {
+			session = sf.openSession();
+			Criteria criteria = session.createCriteria(User.class);
+			criteria.add(Restrictions.eq("username", username));
+			return (User) criteria.uniqueResult();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			if (session != null) {
+				try {
+					session.close();
+				} catch (HibernateException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+
+	// **********************************************
 
 	@Override
 	public Long getUsersTotalCounts() {
@@ -222,5 +262,7 @@ public class UserDaoImpl implements UserDao {
 		}
 		return role;
 	}
+
+	
 
 }

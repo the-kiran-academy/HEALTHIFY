@@ -2,6 +2,7 @@ package com.healthify.api.dao;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 import com.healthify.api.entity.Otp;
 import com.healthify.api.entity.Role;
@@ -22,6 +23,12 @@ public interface UserDao {
 	List<User> getAllUsers();
 
 	User updateUser(User user);
+	
+	//****************************
+	User findByUsername(String username);
+    
+	
+	//*****************************
 
 	Long getUsersTotalCounts();
 
