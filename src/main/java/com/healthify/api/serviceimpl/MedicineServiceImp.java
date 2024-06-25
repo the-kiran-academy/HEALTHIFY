@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.healthify.api.dao.MedicineDao;
 import com.healthify.api.entity.Medicine;
+import com.healthify.api.exception.ResourceNotFoundException;
 import com.healthify.api.service.MedicineService;
 
 /**
@@ -32,79 +33,81 @@ public class MedicineServiceImp implements MedicineService {
 	@Override
 	public boolean addMedicine(Medicine medicine) {
 		return false;
-
 	}
 
 	@Override
 	public boolean deleteMedicineById(String id) {
 		return false;
-		
+
 	}
 
 	@Override
 	public Medicine getMedicineById(String id) {
 		return null;
-		
+
 	}
 
 	@Override
 	public Medicine updateMedicine(Medicine medicine) {
 		return medicine;
-		
+
 	}
 
 	@Override
 	public List<Medicine> getAllMedicine() {
-		return null;
-		
+		List<Medicine> allMedicine = medicineDao.getAllMedicine();
+		if (allMedicine.isEmpty()) {
+			throw new ResourceNotFoundException("Medicines List Does not Exist");
+		} else {
+			return allMedicine;
+		}
 	}
 
 	@Override
 	public List<Medicine> getMedicinesByName(String medicineName) {
 		return null;
-		
+
 	}
 
 	@Override
 	public Medicine getMedicineByName(String medicineName) {
 		return null;
-		
+
 	}
 
 	@Override
 	public List<Medicine> getMedicinesWithQuantityMoreThanZero(int quantity) {
 		return null;
-		
+
 	}
 
 	@Override
 	public Long getCountOfMedicineByDateAdded(String dateAdded) {
 		return null;
-		
+
 	}
 
 	@Override
 	public Long getMedicinesTotalCount() {
 		return null;
-		
+
 	}
 
 	@Override
 	public List<Medicine> getTop5MedicineAddedByDate(String date) {
 		return null;
-		
+
 	}
 
 	public List<Medicine> readExcel(String filePath) {
 		return null;
-		
 
 	}
 
 	@Override
 	public Map<String, Object> uploadSheet(MultipartFile myFile) {
 		return map;
-		
+
 	}
 
 }

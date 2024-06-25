@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.resource.HttpResource;
 
 import com.healthify.api.entity.Medicine;
 import com.healthify.api.service.MedicineService;
@@ -34,7 +36,6 @@ public class MedicineController {
 
 	@PostMapping(value = "/add-medicine")
 	public ResponseEntity<Boolean> addMedicine(@RequestBody Medicine medicine) {
-
 		return null;
 	}
 
@@ -67,7 +68,14 @@ public class MedicineController {
 
 	@GetMapping(value = "/get-all-medicine")
 	public ResponseEntity<List<Medicine>> getAllMedicine() {
-		return null;
+		LOG.info("Get All Medicine = ");
+		List<Medicine> allMedicine = medicineService.getAllMedicine();
+		if(allMedicine!=null) {
+			return new ResponseEntity<List<Medicine>>(allMedicine,HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<List<Medicine>>(allMedicine,HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@PostMapping(value = "/uploadSheet")
