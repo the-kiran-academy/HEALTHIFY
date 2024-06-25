@@ -32,15 +32,7 @@ public class MedicineServiceImp implements MedicineService {
 
 	@Override
 	public boolean addMedicine(Medicine medicine) {
-		boolean saveMedicine = medicineDao.addMedicine(medicine);
-		if (saveMedicine) {
-			return true;
-		}
-		else {
-			throw new ResourceNotFoundException("Something went wrong");
-		}
-		//return saveMedicine;
-
+		return false;
 	}
 
 	@Override
@@ -69,7 +61,6 @@ public class MedicineServiceImp implements MedicineService {
 		} else {
 			return allMedicine;
 		}
-
 	}
 
 	@Override

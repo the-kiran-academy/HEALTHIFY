@@ -29,28 +29,14 @@ public class MedicineDaoIMPL implements MedicineDao {
 	@Override
 	public boolean addMedicine(Medicine medicine) {
 		Session session = sf.getCurrentSession();
-		boolean flag = false;
 
 		try {
-			Medicine ExistId = session.get(Medicine.class, medicine.getId());
-			if (ExistId == null) {
-				session.save(medicine);
-				flag = true;
-			}
-			if (ExistId.getId() == medicine.getId()) {
-				throw new ResourceAlreadyExistsException("Medicine With id Already exist, Please change Id");
 
-			} else {
-
-			}
-
-		} catch (ResourceAlreadyExistsException e) {
-			throw new ResourceAlreadyExistsException("Medicine With id Already exist, Please change Id");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(flag);
-		return flag;
+
+		return false;
 	}
 
 	@Override
@@ -159,9 +145,7 @@ public class MedicineDaoIMPL implements MedicineDao {
 		List<Medicine> resultList = null;
 		try {
 			Session session = sf.getCurrentSession();
-
 			// resultList = session.createCriteria(Medicine.class).list();
-
 			resultList = session.createQuery("from Medicine", Medicine.class).getResultList();
 
 		} catch (HibernateException e) {

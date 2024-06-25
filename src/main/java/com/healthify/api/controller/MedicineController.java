@@ -36,8 +36,7 @@ public class MedicineController {
 
 	@PostMapping(value = "/add-medicine")
 	public ResponseEntity<Boolean> addMedicine(@RequestBody Medicine medicine) {
-		boolean AddMedicine = medicineService.addMedicine(medicine);
-		return new ResponseEntity<Boolean>(AddMedicine, HttpStatus.OK);
+		return null;
 	}
 
 	@GetMapping(value = "/get-medicine-by-name-ignorecase/{medicineName}")
@@ -69,8 +68,7 @@ public class MedicineController {
 
 	@GetMapping(value = "/get-all-medicine")
 	public ResponseEntity<List<Medicine>> getAllMedicine() {
-	//	LOG.info("in Login User = "+user.getUsername());
-
+		LOG.info("Get All Medicine = ");
 		List<Medicine> allMedicine = medicineService.getAllMedicine();
 		if(allMedicine!=null) {
 			return new ResponseEntity<List<Medicine>>(allMedicine,HttpStatus.OK);
