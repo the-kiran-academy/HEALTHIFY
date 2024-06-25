@@ -2,14 +2,15 @@ package com.healthify.api.serviceimpl;
 
 import java.sql.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.exception.ResourceNotFoundException;
 import com.healthify.api.security.CustomUserDetail;
 import com.healthify.api.service.UserService;
@@ -96,9 +97,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Role addRole(Role role) {
+	public Role addRole(Role role) throws ResourceAlreadyExistsException  {
 
-		return null;
+		return dao.addRole(role);
 
 	}
 

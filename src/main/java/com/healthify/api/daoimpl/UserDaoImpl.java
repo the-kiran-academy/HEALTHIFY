@@ -17,6 +17,7 @@ import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Otp;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.exception.SomethingWentWrongException;
 import com.healthify.api.security.CustomUserDetail;
 
@@ -80,19 +81,19 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean deleteUserById(String id){
+	public boolean deleteUserById(String id) {
 		Session session = sf.getCurrentSession();
-		
+
 		try {
-	        User user = session.get(User.class, id);
-	        
-	        if (user != null) {
-	            session.delete(user);
-	            return true;
-	        } else {
-	            return false;
-	        }
-	    } catch (Exception e) {
+			User user = session.get(User.class, id);
+
+			if (user != null) {
+				session.delete(user);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -111,17 +112,15 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 
-	
 	@Override
 	public List<User> getAllUsers() {
-	    try {
+		try {
 			Session session = sf.getCurrentSession();
-	        return session.createQuery("from User", User.class).getResultList();
-	    } catch (HibernateException e) {
-	        throw new SomethingWentWrongException("Issue in retrieving all users");
-	    }
+			return session.createQuery("from User", User.class).getResultList();
+		} catch (HibernateException e) {
+			throw new SomethingWentWrongException("Issue in retrieving all users");
+		}
 	}
-
 
 	@Override
 	public User updateUser(User user) {
@@ -202,13 +201,16 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public Role addRole(Role role) {
-		Session session = sf.getCurrentSession();
-		try {
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+		Session session = sf.getCurrentSession();
+        Role dbRole = session.get(Role.class, role.getId());
+
+        if (dbRole != null) {
+            throw new ResourceAlreadyExistsException("Role already exists with ID: " + role.getId());
+        }
+
+        session.save(role);
+        return role;
 	}
 
 	@Override
