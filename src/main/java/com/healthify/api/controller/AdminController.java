@@ -46,6 +46,7 @@ public class AdminController {
 			LOG.error("Error occurred while adding user: ", e);
 			return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		
 	}
 
 	@DeleteMapping(value = "/delete-user/{id}", produces = "application/json")
