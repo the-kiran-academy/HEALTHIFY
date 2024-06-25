@@ -32,13 +32,16 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public boolean addUser(User user) {
-		Session session = sf.getCurrentSession();
 		try {
+			Session session = sf.getCurrentSession();
+			session.save(user);
+			return true;
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+
 	}
 
 	@Override
@@ -80,19 +83,19 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean deleteUserById(String id){
+	public boolean deleteUserById(String id) {
 		Session session = sf.getCurrentSession();
-		
+
 		try {
-	        User user = session.get(User.class, id);
-	        
-	        if (user != null) {
-	            session.delete(user);
-	            return true;
-	        } else {
-	            return false;
-	        }
-	    } catch (Exception e) {
+			User user = session.get(User.class, id);
+
+			if (user != null) {
+				session.delete(user);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -111,17 +114,20 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 
-	
 	@Override
 	public List<User> getAllUsers() {
-	    try {
+		List<User> users = null;
+		try {
 			Session session = sf.getCurrentSession();
-	        return session.createQuery("from User", User.class).getResultList();
-	    } catch (HibernateException e) {
-	        throw new SomethingWentWrongException("Issue in retrieving all users");
-	    }
-	}
+			Query<User> query = session.createQuery("FROM User", User.class);
+			users = query.list();
+			return users;
+			// return session.createQuery("from User", User.class).getResultList();
+		} catch (HibernateException e) {
+			throw new SomethingWentWrongException("Issue in retrieving all users");
 
+		}
+	}
 
 	@Override
 	public User updateUser(User user) {
