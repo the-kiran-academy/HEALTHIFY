@@ -1,5 +1,7 @@
 package com.healthify.api.serviceimpl;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,8 +33,37 @@ public class MedicineServiceImp implements MedicineService {
 
 	@Override
 	public boolean addMedicine(Medicine medicine) {
-		return false;
+		try {
+//	        LocalDate today = LocalDate.now();
+//
+//	        LocalDate manufactureDate = medicine.getManufactureDate().toLocalDate();
+//	        LocalDate expiryDate = medicine.getExpiryDate().toLocalDate();
+//
+//	        if (manufactureDate.isAfter(today) || expiryDate.isBefore(today)) {
+//	            return false;
+//	        }else {
 
+	        // 13 Digit Timestamp
+	        long currentTimeMillis = System.currentTimeMillis();
+	        // 17 Digit timestamp - called a separate method here
+	        String id = generate17DigitTimeStamp(currentTimeMillis);
+	        medicine.setId(id);
+
+	        // Set the current date as the medicine added date
+	        medicine.setMedicineAddedDateInStock(new Date(currentTimeMillis));
+
+	        return medicineDao.addMedicine(medicine);
+//	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+
+	}
+	
+	private String generate17DigitTimeStamp(long currentTimeMillis) {
+		int randomNumber = (int) ((Math.random()*9000)+1000);
+		return String.format("%013d%04d",currentTimeMillis, randomNumber);
 	}
 
 	@Override
