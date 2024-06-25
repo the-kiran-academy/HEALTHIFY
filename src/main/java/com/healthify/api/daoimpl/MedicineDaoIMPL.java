@@ -24,11 +24,13 @@ public class MedicineDaoIMPL implements MedicineDao {
 	public boolean addMedicine(Medicine medicine) {
 		Session session = sf.getCurrentSession();
 		try {
-
+			session.save(medicine);
+            return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+            return false;
 		}
-		return false;
+		
 	}
 
 	@Override

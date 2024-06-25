@@ -4,8 +4,12 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -25,7 +29,7 @@ public class Medicine {
 	private String name;
 
 	@Column(name = "Type")
-	@NotBlank(message = " Medicine Name Is Required")
+	@NotBlank(message = " Medicine Type Is Required")
 	private String type;
 
 	@Column(name = "Quantity")
@@ -39,13 +43,15 @@ public class Medicine {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "ManufactureDate")
-	@NotBlank(message = "ManufactureDate Is Requird")
+	@NotNull(message = "ManufactureDate Is Requird")
+	//@Past(message = "Manufacturing date must be in the past")
 	private Date manufactureDate;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "ExpiryDate")
-	@NotBlank(message = "ExpiryDate Is Requird")
+	@NotNull(message = "ExpiryDate Is Requird")
+	//@Future(message = "Expiry date must be in the future")
 	private Date expiryDate;
 
 	//current date
@@ -161,5 +167,7 @@ public class Medicine {
 	public void setMedicineCompanyId(String medicineCompanyId) {
 		this.medicineCompanyId = medicineCompanyId;
 	}
+	
+	
 
 }
