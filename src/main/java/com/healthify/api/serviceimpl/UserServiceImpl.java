@@ -42,6 +42,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean deleteUserById(String id) {
+		dao.deleteUserById(id);
+		
 		return false;
 		
 	}
