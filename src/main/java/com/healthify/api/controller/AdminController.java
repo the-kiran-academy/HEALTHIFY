@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.healthify.api.aop.TrackExecutionTime;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.ResourceNotFoundException;
 import com.healthify.api.service.UserService;
 
 @RestController
@@ -78,7 +79,17 @@ public class AdminController {
 
 	@GetMapping(value = "/get-total-count-of-user-by-type/{type}", produces = "application/json")
 	public ResponseEntity<Long> getUsersTotalCountsByType(@PathVariable String type) {
-		return null;
+		
+		long count = userService.getUsersTotalCounts(type);
+	
+		if (count > 0) {
+	            
+			return new ResponseEntity<Long>(count, HttpStatus.OK);
+			
+	        } else {
+	            
+	        	throw new ResourceNotFoundException(HttpStatus.NOT_FOUND +type);
+	        }
 		
 	}
 

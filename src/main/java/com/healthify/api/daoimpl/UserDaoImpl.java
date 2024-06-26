@@ -5,10 +5,14 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -147,13 +151,20 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public Long getUsersTotalCounts(String type) {
-		Session session = sf.getCurrentSession();
+		
+		long count = 0l;
+		
 		try {
-
+			Session session = sf.getCurrentSession();
+			Criteria criteria = session.createCriteria(User.class);
+			criteria.createAlias("roles", "role");
+			criteria.add(Restrictions.eq("role.name", type));
+			count = (long) criteria.setProjection(Projections.rowCount()).uniqueResult();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return count;
 	}
 
 	@Override
