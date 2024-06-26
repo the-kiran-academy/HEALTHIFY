@@ -28,7 +28,8 @@ public class UserDaoImpl implements UserDao {
 
 	@Autowired
 	private SessionFactory sf;
-Logger LOGGER=(Logger) LoggerFactory.getLogger(UserDaoImpl.class);
+
+
 	@Autowired
 	public PasswordEncoder passwordEncoder;
 
@@ -220,7 +221,7 @@ Logger LOGGER=(Logger) LoggerFactory.getLogger(UserDaoImpl.class);
 		try {
 			role = session.get(Role.class, roleId);
 		} catch (Exception e) {
-			LOGGER.error("Id is not valid");
+			LOG.error("Id is not valid");
 		}
 		return role;
 	}
