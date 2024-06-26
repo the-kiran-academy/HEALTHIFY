@@ -1,9 +1,10 @@
 package com.healthify.api.controller;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-
 import javax.validation.Valid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,38 +33,47 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 
-	@PostMapping(value= "/add-user", produces = "application/json")
+	@PostMapping(value = "/add-user", produces = "application/json")
 	public ResponseEntity<Boolean> registerUser(@RequestBody @Valid User user) {
-		return null;
-
+		try {
+			boolean isAdded = userService.addUser(user);
+			if (isAdded) {
+				return new ResponseEntity<>(true, HttpStatus.CREATED);
+			} else {
+				return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		} catch (Exception e) {
+			LOG.error("Error occurred while adding user: ", e);
+			return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 	}
 
 	@DeleteMapping(value = "/delete-user/{id}", produces = "application/json")
 	public ResponseEntity<Boolean> deleteUser(@PathVariable String id) {
 		return null;
-		
+
 	}
 
-	@PutMapping(value="/update-user", produces = "application/json")
+	@PutMapping(value = "/update-user", produces = "application/json")
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		return null;
-		
 
 	}
 
 	@GetMapping(value = "get-all-user", produces = "application/json")
 	@TrackExecutionTime
 	public ResponseEntity<List<User>> getAllAdmin() {
-		
+
 		List<User> allUsers = userService.getAllUsers();
-		
+
 		return new ResponseEntity<List<User>>(allUsers, HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/add-role", produces = "application/json")
 	public ResponseEntity<Object> addRole(@RequestBody Role role) {
 		return null;
-		
+
 	}
 
 	@GetMapping(value = "/get-role-by-id/{roleId}", produces = "application/json")
@@ -75,39 +85,37 @@ public class AdminController {
 			 String errorMessage = "Role with ID " + roleId + " not found";
 	            return ResponseEntity.status(HttpStatus.NOT_FOUND)
 	                                 .body(errorMessage);
-		 
 		}
 	}
 
 	@GetMapping(value = "/get-total-count-of user", produces = "application/json")
 	public ResponseEntity<Long> getUsersTotalCounts() {
 		return null;
-		
+
 	}
 
 	
 	@GetMapping(value = "/get-total-count-of-user-by-type/{type}", produces = "application/json")
 	public ResponseEntity<Long> getUsersTotalCountsByType(@PathVariable String type) {
 		return null;
-		
+
 	}
 
 	@GetMapping(value = "/get-total-count-of-user-by-date-and-type//{date}/{type}", produces = "application/json")
 	public ResponseEntity<Long> getUserCountByDateAndType(@PathVariable Date date, @PathVariable String type) {
 		return null;
-		
+
 	}
 
 	@GetMapping(value = "/get-user-by-firtname/{firstName}", produces = "application/json")
 	public ResponseEntity<List<User>> getUserByFirstName(@PathVariable String firstName) {
 		return null;
-		
+
 	}
 
 	@GetMapping(value = "/user/report", produces = "application/json")
 	public String generateReport() {
 		return null;
-
 
 	}
 	

@@ -1,6 +1,7 @@
 package com.healthify.api.serviceimpl;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,13 +26,33 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean addUser(User user) {
-		return false;
+		try {
+	        LocalDate currentDate = LocalDate.now();
+	        Date sqlDate = Date.valueOf(currentDate);
+	        user.setCreatedDate(sqlDate);
 
+	        String encodedPassword = passwordEncoder.encode(user.getPassword());
+	        user.setPassword(encodedPassword);
+
+	       
+	        List<User> allUsers = dao.getAllUsers();
+	        for (User existingUser : allUsers) {
+	            if (existingUser.getUsername().equals(user.getUsername())) {
+	                return false;
+	            }
+	        }
+	        dao.addUser(user);
+	        return true;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
 	}
 
 	@Override
 	public User loginUser(User user) {
 
+		
 		return dao.loginUser(user);
 	}
 
@@ -43,22 +64,21 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean deleteUserById(String id) {
 		return false;
-		
+
 	}
 
 	@Override
 	public User getUserById(String id) {
 		return null;
-		
+
 	}
 
 	@Override
 	public List<User> getAllUsers() {
-		
-		List<User> allUsers=dao.getAllUsers();
-		
-		if(allUsers.isEmpty())
-		{
+
+		List<User> allUsers = dao.getAllUsers();
+
+		if (allUsers.isEmpty()) {
 			throw new ResourceNotFoundException("Users Not found.");
 		}
 
@@ -74,25 +94,25 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Long getUsersTotalCounts() {
 		return null;
-		
+
 	}
 
 	@Override
 	public Long getUsersTotalCounts(String type) {
 		return null;
-		
+
 	}
 
 	@Override
 	public Long getUserCountByDateAndType(Date registereddate, String type) {
 		return null;
-		
+
 	}
 
 	@Override
 	public List<User> getUserByFirstName(String firstName) {
 		return null;
-		
+
 	}
 
 	@Override
@@ -107,13 +127,12 @@ public class UserServiceImpl implements UserService {
 		return dao.getRoleById(roleId);
 		
 
-		
 	}
 
 	@Override
 	public String generateReport() {
 		return null;
-		
+
 	}
 
 	@Override
