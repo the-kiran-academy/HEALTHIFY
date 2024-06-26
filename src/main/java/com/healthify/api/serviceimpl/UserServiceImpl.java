@@ -124,7 +124,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Role getRoleById(int roleId) {
-		return null;
+		return dao.getRoleById(roleId);
+		
 
 	}
 
@@ -132,6 +133,12 @@ public class UserServiceImpl implements UserService {
 	public String generateReport() {
 		return null;
 
+	}
+
+	@Override
+	public String sample() {
+		
+		return "hi";
 	}
 
 }

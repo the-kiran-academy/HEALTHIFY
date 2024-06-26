@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Optional;
 import javax.validation.Valid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -77,9 +77,15 @@ public class AdminController {
 	}
 
 	@GetMapping(value = "/get-role-by-id/{roleId}", produces = "application/json")
-	public ResponseEntity<Role> getRoleById(@PathVariable int roleId) {
-		return null;
-
+	public ResponseEntity<Object> getRoleById(@PathVariable int roleId) {
+		Role role=userService.getRoleById(roleId);
+		if(role!=null) {
+			return  ResponseEntity.of(Optional.of(role));
+		}else {
+			 String errorMessage = "Role with ID " + roleId + " not found";
+	            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+	                                 .body(errorMessage);
+		}
 	}
 
 	@GetMapping(value = "/get-total-count-of user", produces = "application/json")
@@ -88,6 +94,7 @@ public class AdminController {
 
 	}
 
+	
 	@GetMapping(value = "/get-total-count-of-user-by-type/{type}", produces = "application/json")
 	public ResponseEntity<Long> getUsersTotalCountsByType(@PathVariable String type) {
 		return null;
@@ -110,6 +117,13 @@ public class AdminController {
 	public String generateReport() {
 		return null;
 
+	}
+	
+	@GetMapping("/sample")
+	public ResponseEntity<String> sample(){
+		String msg=userService.sample();
+		return new ResponseEntity<String>(msg, HttpStatus.OK);
+		
 	}
 
 }
