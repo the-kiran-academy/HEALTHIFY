@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.healthify.api.entity.Medicine;
+import com.healthify.api.entity.User;
 import com.healthify.api.service.MedicineService;
 
 /**
@@ -67,7 +69,9 @@ public class MedicineController {
 
 	@GetMapping(value = "/get-all-medicine")
 	public ResponseEntity<List<Medicine>> getAllMedicine() {
-		return null;
+List<Medicine> allMedicine = medicineService.getAllMedicine();
+		
+		return new ResponseEntity<List<Medicine>>(allMedicine, HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/uploadSheet")
