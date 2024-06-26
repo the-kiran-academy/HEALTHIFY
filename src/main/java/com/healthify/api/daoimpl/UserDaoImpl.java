@@ -1,10 +1,12 @@
 package com.healthify.api.daoimpl;
 
 import java.sql.Date;
+
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -12,7 +14,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
-
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import com.healthify.api.dao.UserDao;
 import com.healthify.api.entity.Otp;
 import com.healthify.api.entity.Role;
@@ -137,23 +141,30 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public Long getUsersTotalCounts() {
 		Session session = sf.getCurrentSession();
+		Long count=0l;
 		try {
-
+			Criteria criteria=session.createCriteria(User.class);
+			count= (Long) criteria.setProjection(Projections.rowCount()).uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return count;
 	}
 
 	@Override
 	public Long getUsersTotalCounts(String type) {
 		Session session = sf.getCurrentSession();
+		Long count=0l;
 		try {
+			String types="ROLE_"+type;
+			Criteria criteria=session.createCriteria(User.class).createAlias("roles", "role").add(Restrictions.eq("role.name", types));
+			
+			count= (Long) criteria.setProjection(Projections.rowCount()).uniqueResult();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return count;
 	}
 
 	@Override
