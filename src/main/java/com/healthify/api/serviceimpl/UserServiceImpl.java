@@ -25,6 +25,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean addUser(User user) {
+		user.setCreatedDate(new Date(0));
+		String password=passwordEncoder.encode(user.getPassword());
+		user.setPassword(password);
+		dao.addUser(user);
 		return false;
 
 	}
@@ -50,17 +54,20 @@ public class UserServiceImpl implements UserService {
 	public User getUserById(String id) {
 		return null;
 		
-	}
+	} 
 
 	@Override
 	public List<User> getAllUsers() {
+		List<User> allUsers = dao.getAllUsers();
 		
-		List<User> allUsers=dao.getAllUsers();
 		
-		if(allUsers.isEmpty())
-		{
-			throw new ResourceNotFoundException("Users Not found.");
-		}
+		
+//		List<User> allUsers=dao.getAllUsers();
+//		
+//		if(allUsers.isEmpty())
+//		{
+//			throw new ResourceNotFoundException("Users Not found.");
+//		}
 
 		return allUsers;
 	}

@@ -34,6 +34,7 @@ public class AdminController {
 
 	@PostMapping(value= "/add-user", produces = "application/json")
 	public ResponseEntity<Boolean> registerUser(@RequestBody @Valid User user) {
+		userService.addUser(user);
 		return null;
 
 	}
@@ -54,10 +55,15 @@ public class AdminController {
 	@GetMapping(value = "get-all-user", produces = "application/json")
 	@TrackExecutionTime
 	public ResponseEntity<List<User>> getAllAdmin() {
+	List<User> allusers	=userService.getAllUsers();
 		
-		List<User> allUsers = userService.getAllUsers();
 		
-		return new ResponseEntity<List<User>>(allUsers, HttpStatus.OK);
+		
+		
+		
+//		List<User> allUsers = userService.getAllUsers();
+//		
+		return new ResponseEntity<List<User>>(allusers, HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/add-role", produces = "application/json")
