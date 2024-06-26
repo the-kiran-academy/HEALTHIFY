@@ -1,3 +1,4 @@
+
 package com.healthify.api.daoimpl;
 
 import java.sql.Date;
@@ -9,6 +10,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -26,6 +28,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Autowired
 	private SessionFactory sf;
+
 
 	@Autowired
 	public PasswordEncoder passwordEncoder;
@@ -218,7 +221,7 @@ public class UserDaoImpl implements UserDao {
 		try {
 			role = session.get(Role.class, roleId);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error("Id is not valid");
 		}
 		return role;
 	}
