@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jfree.util.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.healthify.api.aop.TrackExecutionTime;
 import com.healthify.api.entity.Role;
 import com.healthify.api.entity.User;
+import com.healthify.api.exception.ResourceAlreadyExistsException;
 import com.healthify.api.service.UserService;
 
 @RestController
@@ -32,7 +35,7 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 
-	@PostMapping(value= "/add-user", produces = "application/json")
+	@PostMapping(value = "/add-user", produces = "application/json")
 	public ResponseEntity<Boolean> registerUser(@RequestBody @Valid User user) {
 		return null;
 
@@ -41,32 +44,51 @@ public class AdminController {
 	@DeleteMapping(value = "/delete-user/{id}", produces = "application/json")
 	public ResponseEntity<Boolean> deleteUser(@PathVariable String id) {
 		return null;
-		
+
 	}
 
-	@PutMapping(value="/update-user", produces = "application/json")
+	@PutMapping(value = "/update-user", produces = "application/json")
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		return null;
-		
 
 	}
 
 	@GetMapping(value = "get-all-user", produces = "application/json")
 	@TrackExecutionTime
 	public ResponseEntity<List<User>> getAllAdmin() {
-		
+
 		List<User> allUsers = userService.getAllUsers();
-		
+
 		return new ResponseEntity<List<User>>(allUsers, HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/add-role", produces = "application/json")
 	public ResponseEntity<Object> addRole(@RequestBody Role role) {
-		return null;
-		
+
+		try {
+			
+			Role addedRole = userService.addRole(role);
+			Log.info("Role Added " + addedRole);
+
+			return new ResponseEntity<>(addedRole, HttpStatus.CREATED);
+
+		} catch (ResourceAlreadyExistsException e) {
+
+			Log.error("Error adding role: " + e.getMessage());
+
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+
+		} catch (Exception e) {
+
+			Log.error("Unexpected error: " + e.getMessage());
+			return new ResponseEntity<>("Unexpected error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
+
+		}
 	}
 
 	@GetMapping(value = "/get-role-by-id/{roleId}", produces = "application/json")
+
+
 	public ResponseEntity<Object> getRoleById(@PathVariable int roleId) {
 		Role role=userService.getRoleById(roleId);
 		if(role!=null) {
@@ -77,37 +99,37 @@ public class AdminController {
 	                                 .body(errorMessage);
 		 
 		}
+
 	}
 
 	@GetMapping(value = "/get-total-count-of user", produces = "application/json")
 	public ResponseEntity<Long> getUsersTotalCounts() {
 		return null;
-		
+
 	}
 
 	
 	@GetMapping(value = "/get-total-count-of-user-by-type/{type}", produces = "application/json")
 	public ResponseEntity<Long> getUsersTotalCountsByType(@PathVariable String type) {
 		return null;
-		
+
 	}
 
 	@GetMapping(value = "/get-total-count-of-user-by-date-and-type//{date}/{type}", produces = "application/json")
 	public ResponseEntity<Long> getUserCountByDateAndType(@PathVariable Date date, @PathVariable String type) {
 		return null;
-		
+
 	}
 
 	@GetMapping(value = "/get-user-by-firtname/{firstName}", produces = "application/json")
 	public ResponseEntity<List<User>> getUserByFirstName(@PathVariable String firstName) {
 		return null;
-		
+
 	}
 
 	@GetMapping(value = "/user/report", produces = "application/json")
 	public String generateReport() {
 		return null;
-
 
 	}
 	

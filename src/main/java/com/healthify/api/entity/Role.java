@@ -5,15 +5,18 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Role {
 	@Id
 	private int id;
+
+	@NotBlank(message = "Role name is mandatory")
 	private String name;
-	
+
 	@ManyToMany(mappedBy = "roles")
-    private Set<User> users;
+	private Set<User> users;
 
 	public Role() {
 		// TODO Auto-generated constructor stub
