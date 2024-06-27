@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.healthify.api.dao.MedicineDao;
 import com.healthify.api.entity.Medicine;
+import com.healthify.api.entity.User;
+import com.healthify.api.exception.ResourceNotFoundException;
 import com.healthify.api.service.MedicineService;
 
 /**
@@ -55,9 +57,18 @@ public class MedicineServiceImp implements MedicineService {
 
 	@Override
 	public List<Medicine> getAllMedicine() {
-		return null;
+List<Medicine> allMedicine=medicineDao.getAllMedicine();
 		
+		if(allMedicine.isEmpty())
+		{
+			throw new ResourceNotFoundException("Medicine Not found.");
+		}
+
+		return allMedicine;
 	}
+	
+		
+	
 
 	@Override
 	public List<Medicine> getMedicinesByName(String medicineName) {

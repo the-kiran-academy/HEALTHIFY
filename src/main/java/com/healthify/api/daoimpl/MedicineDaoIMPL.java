@@ -2,6 +2,7 @@ package com.healthify.api.daoimpl;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.healthify.api.dao.MedicineDao;
 import com.healthify.api.entity.Medicine;
+import com.healthify.api.entity.User;
+import com.healthify.api.exception.SomethingWentWrongException;
 
 /**
  * @author RAM
@@ -134,13 +137,13 @@ public class MedicineDaoIMPL implements MedicineDao {
 
 	@Override
 	public List<Medicine> getAllMedicine() {
-		Session session = sf.getCurrentSession();
+		
 		try {
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+			Session session = sf.getCurrentSession();
+	        return session.createQuery("from Medicine", Medicine.class).getResultList();
+	    } catch (HibernateException e) {
+	        throw new SomethingWentWrongException("Issue in retrieving all medicine");
+	    }
 	}
 
 	@Override
