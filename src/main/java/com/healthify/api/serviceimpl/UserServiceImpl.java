@@ -79,7 +79,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Long getUsersTotalCounts(String type) {
-		return null;
+		
+	   type = String.format("ROLE_%s", type.toUpperCase());
+		return dao.getUsersTotalCounts(type);
 		
 	}
 
